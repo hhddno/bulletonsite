@@ -1,6 +1,6 @@
 export const MINI_W = 1280;
 
-export const MINI_H = 820;
+export const MINI_H = 720;
 
 
 

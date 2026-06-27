@@ -222,21 +222,7 @@ function domainFromUrl(url) {
 
 function miniBrowserHtml(p) {
   const domain = domainFromUrl(p.url);
-  const imgSrc = p.image ? resolveAsset(p.image) : '';
-
-  if (imgSrc) {
-    return `
-    <div class="mini-browser mini-browser--preview" data-project-url="${p.url}">
-      <div class="mini-browser__bar" aria-hidden="true">
-        <span></span><span></span><span></span>
-        <span class="mini-browser__url">${domain}</span>
-      </div>
-      <div class="mini-browser__viewport mini-browser__viewport--static">
-        <img class="mini-browser__preview-img" src="${imgSrc}" alt="Aperçu ${p.name}" loading="lazy" />
-        <button type="button" class="btn btn--sm mini-browser__live-btn">Aperçu interactif</button>
-      </div>
-    </div>`;
-  }
+  const imgFallback = p.image ? resolveAsset(p.image) : '';
 
   return `
     <div class="mini-browser" data-project-url="${p.url}">
@@ -246,37 +232,37 @@ function miniBrowserHtml(p) {
       </div>
       <div class="mini-browser__viewport">
         <div class="mini-browser__scale">
-          <iframe class="mini-browser__iframe" src="${p.url}" title="Aperçu ${p.name}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+          <iframe
+            class="mini-browser__iframe"
+            data-src="${p.url}"
+            title="Aperçu ${p.name}"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+          ></iframe>
+          ${imgFallback ? `<img class="mini-browser__fallback-img" src="${imgFallback}" alt="Aperçu ${p.name}" hidden />` : ''}
         </div>
       </div>
-      <p class="mini-browser__fallback">Intégration bloquée — <a href="${p.url}" target="_blank" rel="noopener">ouvrir ${domain}</a></p>
+      <p class="mini-browser__fallback">Aperçu indisponible — <a href="${p.url}" target="_blank" rel="noopener">ouvrir ${domain}</a></p>
     </div>`;
 }
 
-function activateLivePreview(browser, p) {
-  if (browser.classList.contains('is-live')) return;
-  browser.classList.add('is-live');
-  const domain = domainFromUrl(p.url);
-  browser.innerHTML = `
-    <div class="mini-browser__bar" aria-hidden="true">
-      <span></span><span></span><span></span>
-      <span class="mini-browser__url">${domain}</span>
-    </div>
-    <div class="mini-browser__viewport">
-      <div class="mini-browser__scale">
-        <iframe class="mini-browser__iframe" src="${p.url}" title="Aperçu ${p.name}" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
-      </div>
-    </div>
-    <p class="mini-browser__fallback">Intégration bloquée — <a href="${p.url}" target="_blank" rel="noopener">ouvrir ${domain}</a></p>`;
+function loadBrowserIframe(browser) {
+  const iframe = browser?.querySelector('.mini-browser__iframe');
+  if (!iframe?.dataset.src || iframe.src) return;
+  iframe.src = iframe.dataset.src;
+}
 
+function initLiveBrowser(browser) {
+  if (!browser || browser.dataset.liveReady === 'true') return;
+  browser.dataset.liveReady = 'true';
   const vp = browser.querySelector('.mini-browser__viewport');
   setupMiniViewportDrag(vp);
   observeMiniBrowser(browser);
-  browser.querySelector('iframe')?.addEventListener('load', () => {
+  const iframe = browser.querySelector('.mini-browser__iframe');
+  iframe?.addEventListener('load', () => {
     fitMiniBrowser(browser);
     setTimeout(() => fitMiniBrowser(browser), 150);
   });
-  requestAnimationFrame(() => fitMiniBrowser(browser));
 }
 
 function panelHtml(p, realIndex) {
@@ -292,7 +278,6 @@ function panelHtml(p, realIndex) {
           <a class="btn" href="${p.url}" target="_blank" rel="noopener">Voir le site en ligne →</a>
           <a class="btn btn--ghost" href="#contact">Un site comme celui-ci</a>
         </div>
-        <p class="showcase__note">Capture d'écran par défaut · cliquez sur « Aperçu interactif » pour explorer</p>
       </div>
       ${miniBrowserHtml(p)}
     </article>`;
@@ -304,20 +289,16 @@ function initShowcase(list = projects) {
 
   track.innerHTML = list.map((p, i) => panelHtml(p, i)).join('');
 
-  track.querySelectorAll('.mini-browser--preview').forEach((browser, idx) => {
-    const btn = browser.querySelector('.mini-browser__live-btn');
-    btn?.addEventListener('click', () => activateLivePreview(browser, list[idx]));
-  });
-
-  track.querySelectorAll('.mini-browser:not(.mini-browser--preview)').forEach((browser, idx) => {
-    const p = list[idx];
-    const vp = browser.querySelector('.mini-browser__viewport');
-    setupMiniViewportDrag(vp);
-    observeMiniBrowser(browser);
-    browser.querySelector('iframe')?.addEventListener('load', () => fitMiniBrowser(browser));
-  });
+  track.querySelectorAll('.mini-browser').forEach((browser) => initLiveBrowser(browser));
 
   const panels = () => [...track.querySelectorAll('.showcase__panel')];
+
+  const activatePanel = (panel) => {
+    const browser = panel?.querySelector('.mini-browser');
+    if (!browser) return;
+    loadBrowserIframe(browser);
+    requestAnimationFrame(() => fitMiniBrowser(browser));
+  };
 
   const getRealIndex = () => {
     const center = track.scrollLeft + track.clientWidth / 2;
@@ -336,9 +317,11 @@ function initShowcase(list = projects) {
 
   const updateActive = () => {
     const i = getRealIndex();
-    panels().forEach((p) =>
-      p.classList.toggle('is-active', Number(p.dataset.realIndex) === i),
-    );
+    panels().forEach((p) => {
+      const active = Number(p.dataset.realIndex) === i;
+      p.classList.toggle('is-active', active);
+      if (active) activatePanel(p);
+    });
   };
 
   const scrollToRealIndex = (realIndex, smooth = true) => {
