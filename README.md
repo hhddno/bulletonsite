@@ -7,12 +7,18 @@ Le site utilise des modules JavaScript, **ne pas ouvrir `index.html` en double-c
 ## Lancer en local
 
 ```bash
-cd BulleWeb
+cd BulleTonSite
 npm install
 npm start
 ```
 
 Puis ouvrir : **http://localhost:3000**
+
+## Diapo promo
+
+Présentation verticale (Stories / réseaux) : **http://localhost:3000/diapo/** — en ligne sur [bulletonsite.com/diapo/](https://bulletonsite.com/diapo/).
+
+Contenu éditable dans le projet voisin `BulleTonSiteCommunication` (`npm run sync:site` pour publier sur le site).
 
 ## Miniatures interactives (après déploiement)
 
@@ -25,4 +31,4 @@ Mettre à jour `config.js` → `portfolio.url` en même temps.
 
 Configuré dans `config.js` → `brand` (**Bulle ton site**).
 
-Repo : [github.com/hhddno/bulletonsite](https://github.com/hhddno/bulletonsite)
+Repo : [github.com/dariohd/bulletonsite](https://github.com/dariohd/bulletonsite)
