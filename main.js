@@ -225,7 +225,7 @@ function miniBrowserHtml(p) {
   const imgFallback = p.image ? resolveAsset(p.image) : '';
 
   return `
-    <div class="mini-browser" data-project-url="${p.url}">
+    <div class="mini-browser mini-browser--16x9" data-project-url="${p.url}">
       <div class="mini-browser__bar" aria-hidden="true">
         <span></span><span></span><span></span>
         <span class="mini-browser__url">${domain}</span>
@@ -255,7 +255,11 @@ function loadBrowserIframe(browser) {
 function initLiveBrowser(browser) {
   if (!browser || browser.dataset.liveReady === 'true') return;
   browser.dataset.liveReady = 'true';
+
+  const fitted = browser.classList.contains('mini-browser--16x9');
   const vp = browser.querySelector('.mini-browser__viewport');
+  if (fitted) return;
+
   setupMiniViewportDrag(vp);
   observeMiniBrowser(browser);
   const iframe = browser.querySelector('.mini-browser__iframe');
@@ -297,7 +301,6 @@ function initShowcase(list = projects) {
     const browser = panel?.querySelector('.mini-browser');
     if (!browser) return;
     loadBrowserIframe(browser);
-    requestAnimationFrame(() => fitMiniBrowser(browser));
   };
 
   const getRealIndex = () => {
@@ -572,6 +575,11 @@ function initPricing() {
   const footnotes = document.getElementById('pricing-footnotes');
   if (footnotes) {
     footnotes.innerHTML = pricing.footnotes.map((f) => `<li>${f}</li>`).join('');
+  }
+
+  const hostingEl = document.getElementById('pricing-hosting');
+  if (hostingEl && pricing.hosting) {
+    hostingEl.innerHTML = `<strong>${pricing.hosting.label}</strong> — ${pricing.hosting.detail}`;
   }
 }
 

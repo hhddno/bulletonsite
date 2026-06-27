@@ -50,7 +50,7 @@ export const seo = {
 export const guarantees = [
   'Devis gratuit sous 24 h',
   'Paiement en 2 fois',
-  'Hébergement 1ʳᵉ année inclus',
+  '1ʳᵉ année d\'hébergement incluse',
   'Équipe dédiée',
 ];
 
@@ -221,7 +221,12 @@ export const process = {
 export const pricing = {
   title: 'Des tarifs transparents',
   from: 450,
-  note: 'Fourchettes indicatives · Chaque projet fait l\'objet d\'un devis personnalisé · Hébergement 1ʳᵉ année inclus',
+  note: 'Fourchettes indicatives · Chaque projet fait l\'objet d\'un devis personnalisé · 1ʳᵉ année d\'hébergement incluse',
+  hosting: {
+    price: 5,
+    label: '5 €/mois',
+    detail: 'Hébergement dès la 2ᵉ année (1ʳᵉ année incluse dans le devis)',
+  },
   example: {
     label: 'Exemple — chambre d\'hôtes',
     range: '~550 €',
@@ -254,6 +259,7 @@ export const pricing = {
   footnotes: [
     'Devis gratuit · Sans engagement',
     'Pas de frais cachés',
+    '1ʳᵉ année d\'hébergement incluse · puis 5 €/mois',
     'Paiement en 2 fois : acompte, solde à la livraison',
   ],
 };
@@ -322,7 +328,7 @@ export const faq = [
   },
   {
     q: 'Que comprend l\'hébergement ?',
-    a: 'Mise en ligne, certificat HTTPS, nom de domaine possible en option, et hébergement sur une infrastructure fiable. Pas de frais cachés.',
+    a: 'Mise en ligne, certificat HTTPS et hébergement sur une infrastructure fiable. La 1ʳᵉ année est incluse dans votre devis ; ensuite, comptez 5 €/mois (nom de domaine en option). Pas de frais cachés.',
   },
   {
     q: 'Travaillez-vous à distance ?',

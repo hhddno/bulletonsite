@@ -1038,6 +1038,23 @@ body.is-loaded .hero__stage {
   flex: none;
   width: 100%;
   min-height: 0;
+  overflow: hidden;
+  cursor: default;
+}
+
+.mini-browser--16x9 .mini-browser__scale {
+  width: 100%;
+  height: 100%;
+}
+
+.mini-browser--16x9 .mini-browser__iframe,
+.mini-browser--16x9 .mini-browser__fallback-img {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
 }
 
 .showcase .mini-browser__viewport iframe {
@@ -1826,6 +1843,24 @@ body.is-loaded .hero__stage {
   color: var(--muted);
   margin-top: 0.5rem;
   line-height: 1.5;
+}
+
+.pricing-hosting {
+  max-width: 36rem;
+  margin: 0 auto 1.5rem;
+  padding: 0.85rem 1.15rem;
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+  border-radius: var(--radius);
+  background: var(--bg-mid);
+  border: 1px solid var(--border);
+}
+
+.pricing-hosting strong {
+  color: var(--accent);
+  font-weight: 600;
 }
 
 /* ── Équipe — encart ── */
