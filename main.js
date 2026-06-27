@@ -429,16 +429,9 @@ function initShowcase(list = projects) {
   let scrollSyncTimer = 0;
   let lastFocused = -1;
 
-  const getSlidePad = () => {
-    const panel = panels()[0];
-    if (!panel) return 0;
-    return Math.max(0, (track.clientWidth - panel.offsetWidth) / 2);
-  };
-
   const setTrackPadding = () => {
-    const pad = getSlidePad();
-    track.style.paddingLeft = `${pad}px`;
-    track.style.paddingRight = `${pad}px`;
+    track.style.paddingLeft = '0';
+    track.style.paddingRight = '0';
   };
 
   const getFocusedSlideIndex = () => {
@@ -483,9 +476,8 @@ function initShowcase(list = projects) {
   const scrollToSlide = (slideIndex, smooth = true) => {
     const target = panels()[slideIndex];
     if (!target) return;
-    const pad = getSlidePad();
     track.scrollTo({
-      left: target.offsetLeft - pad,
+      left: target.offsetLeft,
       behavior: smooth && !isJumping ? 'smooth' : 'auto',
     });
     if (!smooth || isJumping) updateActive();
@@ -527,14 +519,12 @@ function initShowcase(list = projects) {
       if (e.target.closest('.mini-browser__viewport')) return;
       const absX = Math.abs(e.deltaX);
       const absY = Math.abs(e.deltaY);
-      if (e.shiftKey && absY > absX) {
-        e.preventDefault();
-        track.scrollLeft += e.deltaY;
-        return;
-      }
-      if (absX <= absY) return;
+      const horizontal = e.shiftKey ? absY : absX;
+      const vertical = e.shiftKey ? 0 : absY;
+      if (horizontal <= vertical) return;
       e.preventDefault();
-      track.scrollLeft += e.deltaX;
+      if (e.deltaX > 0 || (e.shiftKey && e.deltaY > 0)) goNext();
+      else goPrev();
     },
     { passive: false },
   );
@@ -788,15 +778,21 @@ function initAbout() {
 
   grid.innerHTML = team
     .map(
-      (member) => `
-    <article class="team-card reveal">
-      ${
-        member.photo
-          ? `<div class="team-card__avatar team-card__avatar--photo"><img src="${resolveAsset(member.photo)}" alt="${member.name}" width="88" height="88" loading="lazy" decoding="async" /></div>`
-          : `<div class="team-card__avatar" aria-hidden="true">${teamInitials(member.name)}</div>`
-      }
-      <h3 class="team-card__name">${member.name}</h3>
-      <p class="team-card__role">${member.role}</p>
+      (member, i) => `
+    <article class="team-card reveal${i > 0 ? ` reveal--d${Math.min(i, 4)}` : ''}">
+      <div class="team-card__photo${member.photo ? '' : ' team-card__photo--fallback'}">
+        ${
+          member.photo
+            ? `<img src="${resolveAsset(member.photo)}" alt="${member.name}" width="112" height="112" loading="lazy" decoding="async" onerror="this.remove(); this.parentElement.classList.add('team-card__photo--fallback')" />`
+            : ''
+        }
+        <span class="team-card__initials" aria-hidden="true">${teamInitials(member.name)}</span>
+      </div>
+      <div class="team-card__body">
+        <h3 class="team-card__name">${member.name}</h3>
+        <p class="team-card__role">${member.role}</p>
+        ${member.bio ? `<p class="team-card__bio">${member.bio}</p>` : ''}
+      </div>
     </article>`,
     )
     .join('');

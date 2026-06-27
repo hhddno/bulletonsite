@@ -9,7 +9,7 @@ QUI FAIT QUOI
 • Sur CHAQUE site client (Ela, Quai, ETCBC, SQCDP…) :
   ajouter l'en-tête CSP frame-ancestors qui autorise bulletonsite.
 
-• Sur le portfolio (BulleWeb) :
+• Sur le portfolio (BulleTonSite) :
   rien de bloquant côté sortie, les sites clients doivent autoriser l'embed.
 
 • bulletonsite.com :

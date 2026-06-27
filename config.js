@@ -15,7 +15,9 @@ export const defaultTheme = 'mineral';
 export const portfolio = {
   url: 'https://bulletonsite.com',
   domain: 'https://bulletonsite.com',
+  diapoUrl: 'https://bulletonsite.com/diapo/',
   localUrl: 'http://localhost:3000',
+  localDiapoUrl: 'http://localhost:3000/diapo/',
   /** Domaines autorisés à afficher ce site en iframe (portfolio + préprod locale). */
   frameAncestors: [
     'https://bulletonsite.vercel.app',
@@ -328,11 +330,6 @@ export const comparison = {
       us: 'Quelques échanges : brief, retours, validation',
     },
     {
-      label: 'Coût',
-      them: 'Abonnement mensuel fréquent + options',
-      us: 'Devis unique · pas d\'abonnement obligatoire',
-    },
-    {
       label: 'Résultat',
       them: 'Site fonctionnel, peu différenciant',
       us: 'Site soigné, crédible face à vos clients',
@@ -388,9 +385,24 @@ export const organization = {
 };
 
 export const team = [
-  { name: 'Audrey Jurado', role: 'Communication · Relationnel', photo: 'assets/audrey-jurado.png' },
-  { name: 'Hugo Davion', role: 'Développeur web', photo: 'assets/hugo-portrait.png' },
-  { name: 'Niyazi Azaiez', role: 'Identité visuelle · Graphiste', photo: 'assets/niyazi-azaiez.png' },
+  {
+    name: 'Audrey Jurado',
+    role: 'Communication · Relationnel',
+    photo: 'assets/audrey-jurado.png',
+    bio: 'Votre premier contact : elle écoute votre activité, vos clients et vos objectifs. Des échanges simples, sans jargon.',
+  },
+  {
+    name: 'Niyazi Azaiez',
+    role: 'Identité visuelle · Graphiste',
+    photo: 'assets/niyazi-azaiez.png',
+    bio: 'Logo, couleurs, typographie et maquettes : une identité visuelle pensée pour votre métier, validée avant le développement.',
+  },
+  {
+    name: 'Hugo Davion',
+    role: 'Développeur web',
+    photo: 'assets/hugo-portrait.png',
+    bio: 'Il intègre le site, optimise mobile et référencement, puis publie en ligne. Vous nous envoyez vos changements, on s\'en occupe.',
+  },
 ];
 
 export const about = {

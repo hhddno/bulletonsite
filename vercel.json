@@ -1,6 +1,9 @@
 {
   "buildCommand": null,
   "outputDirectory": ".",
+  "redirects": [
+    { "source": "/diapo", "destination": "/diapo/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
