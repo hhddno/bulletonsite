@@ -37,13 +37,13 @@ export const brand = {
   byline: 'Création de sites web',
   tagline: 'Sites internet sur mesure',
   description:
-    'Bulle ton site crée des sites vitrines sur mesure pour artisans, chambres d\'hôtes et commerces. Devis gratuit sous 24 h, prototype en 2–3 jours, livraison en 1–2 semaines.',
+    'Bulle ton site — création de sites web sur mesure pour artisans, gîtes et commerces. Vitrines, outils métier, réservations. Devis gratuit sous 24 h.',
 };
 
 export const seo = {
-  title: 'Bulle ton site — Sites vitrines sur mesure',
+  title: 'Bulle ton site — Création de sites web sur mesure',
   description:
-    'Création de sites web pour artisans, gîtes et commerces. Communication, design et développement réunis. Dès 450 €, devis gratuit sous 24 h.',
+    'Sites web et outils sur mesure : communication, design et développement réunis. Artisans, gîtes, commerces. Dès 450 € · devis gratuit sous 24 h.',
   ogImage: 'assets/og-bubble.svg',
 };
 
@@ -74,16 +74,16 @@ export const nav = [
 
 export const hero = {
   eyebrow: 'Design · code · mise en ligne',
-  title: 'Votre site vitrine,',
+  title: 'Votre site internet,',
   titleEm: 'conçu en équipe.',
   lead:
-    'Communication, branding et développement réunis : nous créons des sites clairs et soignés pour artisans, gîtes et commerces. Un interlocuteur par métier, un seul projet — du brief au prototype en quelques jours.',
+    'Communication, branding et développement réunis : vitrines, réservations, outils métier — nous créons ce dont vous avez besoin. Un interlocuteur par métier, du brief au prototype en quelques jours.',
   chips: ['Équipe dédiée', 'Prototype en 2–3 jours', 'Mobile & Google'],
   ctaPrimary: 'Demander un devis gratuit',
   ctaSecondary: 'Voir nos réalisations',
   stats: [
     { value: '4', suffix: '+', label: 'sites livrés' },
-    { value: '450', suffix: '€', label: 'vitrine dès' },
+    { value: '450', suffix: '€', label: 'dès' },
     { value: '1–2', suffix: ' sem.', label: 'de création' },
     { value: '2–3', suffix: ' jours', label: 'premier prototype' },
   ],
@@ -99,7 +99,7 @@ export const sectors = [
 export const services = [
   {
     icon: '✓',
-    title: 'Site vitrine qui rassure',
+    title: 'Site qui rassure',
     text: 'Présentation claire de votre activité, photos, tarifs et contact — vos clients comprennent tout en 30 secondes.',
   },
   {
@@ -234,7 +234,7 @@ export const pricing = {
   },
   tiers: [
     {
-      label: 'Site vitrine',
+      label: 'Site sur mesure',
       range: '450 – 900 €',
       rangeNote: 'Sur devis',
       features: [

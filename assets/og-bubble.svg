@@ -15,6 +15,6 @@
   <circle cx="880" cy="300" r="160" fill="url(#bubble)" opacity=".85"/>
   <circle cx="1020" cy="180" r="70" fill="url(#bubble)" opacity=".5"/>
   <text x="80" y="280" fill="#fff" font-family="Georgia, serif" font-size="72" font-weight="600">Bulle ton site</text>
-  <text x="80" y="360" fill="#c4b5fd" font-family="system-ui, sans-serif" font-size="36">Sites vitrines sur mesure</text>
+  <text x="80" y="360" fill="#c4b5fd" font-family="system-ui, sans-serif" font-size="36">Création de sites web sur mesure</text>
   <text x="80" y="430" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="28">Devis gratuit sous 24 h · Dès 450 €</text>
 </svg>
