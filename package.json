@@ -1,5 +1,5 @@
 {
-  "name": "bulleweb",
+  "name": "bulletonsite",
   "private": true,
   "scripts": {
     "start": "serve . -l 3000",

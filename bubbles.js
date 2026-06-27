@@ -1,5 +1,5 @@
 /**
- * Bulles flottantes en arrière-plan — légères, non bloquantes.
+ * Bulles flottantes — rose · violet · bleu pastel (palette bulle).
  */
 export function initBubbles() {
   const canvas = document.getElementById('site-bubbles');
@@ -13,18 +13,22 @@ export function initBubbles() {
   let mouse = { x: 0, y: 0 };
   let raf = 0;
 
-  const palette = [
-    'rgba(255, 255, 255, 0.55)',
-    'rgba(200, 225, 255, 0.45)',
-    'rgba(180, 210, 255, 0.35)',
-    'rgba(230, 245, 255, 0.5)',
-    'rgba(255, 255, 255, 0.35)',
+  const tints = [
+    { core: [167, 139, 250], edge: [244, 114, 182], rim: [103, 232, 249] },
+    { core: [139, 92, 246], edge: [236, 72, 153], rim: [125, 211, 252] },
+    { core: [192, 132, 252], edge: [249, 168, 212], rim: [147, 197, 253] },
+    { core: [180, 120, 255], edge: [251, 113, 180], rim: [56, 189, 248] },
+    { core: [155, 135, 245], edge: [244, 63, 150], rim: [103, 232, 249] },
   ];
+
+  function rgba(rgb, a) {
+    return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${a})`;
+  }
 
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
-    const count = Math.min(28, Math.max(12, Math.floor((w * h) / 80000)));
+    const count = Math.min(34, Math.max(16, Math.floor((w * h) / 65000)));
     bubbles = Array.from({ length: count }, () => mkBubble());
   }
 
@@ -38,8 +42,91 @@ export function initBubbles() {
       vx: (Math.random() - 0.5) * 0.25,
       wobble: Math.random() * Math.PI * 2,
       wobbleSpeed: Math.random() * 0.02 + 0.008,
-      color: palette[Math.floor(Math.random() * palette.length)],
+      tint: tints[Math.floor(Math.random() * tints.length)],
+      glowBias: 0.35 + Math.random() * 0.45,
     };
+  }
+
+  function drawBubble(b) {
+    const { x, y, r, tint, glowBias } = b;
+
+    const body = ctx.createRadialGradient(
+      x - r * 0.1,
+      y - r * 0.25,
+      r * 0.05,
+      x + r * 0.1,
+      y + r * 0.15,
+      r,
+    );
+    body.addColorStop(0, rgba(tint.core, 0.55 * glowBias + 0.2));
+    body.addColorStop(0.4, rgba(tint.edge, 0.38 * glowBias + 0.15));
+    body.addColorStop(0.72, rgba(tint.rim, 0.42 * glowBias + 0.12));
+    body.addColorStop(1, rgba(tint.rim, 0.1));
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = body;
+    ctx.fill();
+
+    const sheen = ctx.createRadialGradient(
+      x - r * 0.32,
+      y - r * 0.38,
+      0,
+      x - r * 0.2,
+      y - r * 0.25,
+      r * 0.55,
+    );
+    sheen.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+    sheen.addColorStop(0.35, 'rgba(255, 220, 245, 0.4)');
+    sheen.addColorStop(1, 'rgba(200, 180, 255, 0)');
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = sheen;
+    ctx.fill();
+
+    const pinkTop = ctx.createRadialGradient(
+      x - r * 0.15,
+      y - r * 0.45,
+      0,
+      x - r * 0.1,
+      y - r * 0.35,
+      r * 0.55,
+    );
+    pinkTop.addColorStop(0, `rgba(244, 114, 182, ${0.35 * glowBias})`);
+    pinkTop.addColorStop(1, 'rgba(244, 114, 182, 0)');
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = pinkTop;
+    ctx.fill();
+
+    const cyanEdge = ctx.createRadialGradient(
+      x + r * 0.35,
+      y + r * 0.3,
+      0,
+      x + r * 0.25,
+      y + r * 0.2,
+      r * 0.5,
+    );
+    cyanEdge.addColorStop(0, `rgba(103, 232, 249, ${0.3 * glowBias})`);
+    cyanEdge.addColorStop(1, 'rgba(103, 232, 249, 0)');
+
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = cyanEdge;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(x - r * 0.3, y - r * 0.32, r * 0.13, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.strokeStyle = `rgba(167, 139, 250, ${0.4 * glowBias + 0.2})`;
+    ctx.lineWidth = Math.max(1.2, r * 0.045);
+    ctx.arc(x, y, r * 0.98, 0, Math.PI * 2);
+    ctx.stroke();
   }
 
   function draw() {
@@ -64,21 +151,7 @@ export function initBubbles() {
       if (b.x < -b.r) b.x = w + b.r;
       if (b.x > w + b.r) b.x = -b.r;
 
-      ctx.beginPath();
-      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-      ctx.fillStyle = b.color;
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.arc(b.x - b.r * 0.28, b.y - b.r * 0.28, b.r * 0.2, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
-      ctx.lineWidth = 1;
-      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-      ctx.stroke();
+      drawBubble(b);
     }
     raf = requestAnimationFrame(draw);
   }

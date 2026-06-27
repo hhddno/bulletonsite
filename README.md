@@ -1,4 +1,4 @@
-# La Bulle Web
+# Bulle ton site
 
 Site vitrine commercial (artisans, tourisme, commerces locaux).
 
@@ -23,6 +23,6 @@ Mettre à jour `config.js` → `portfolio.url` en même temps.
 
 ## Identité
 
-Configuré dans `config.js` → `brand` (**La Bulle Web**).
+Configuré dans `config.js` → `brand` (**Bulle ton site**).
 
-Repo : [github.com/hhddno/bulleweb](https://github.com/hhddno/bulleweb)
+Repo : [github.com/hhddno/bulletonsite](https://github.com/hhddno/bulletonsite)
