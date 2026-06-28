@@ -18,7 +18,7 @@ Puis ouvrir : **http://localhost:3000**
 
 Présentation verticale (Stories / réseaux) : **http://localhost:3000/diapo/** — en ligne sur [bulletonsite.com/diapo/](https://bulletonsite.com/diapo/).
 
-Contenu éditable dans le projet voisin `BulleTonSiteCommunication` (`npm run sync:site` pour publier sur le site).
+Contenu éditable dans le dossier voisin `Entreprise/Communication(PasUnProjet)` (`npm run sync:site` pour publier sur le site).
 
 ## Miniatures interactives (après déploiement)
 
