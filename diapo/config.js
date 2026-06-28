@@ -165,7 +165,7 @@ const projectEtcbc = {
   url: 'https://www.etcbc-charpente.com/',
   screens: [
     { tag: 'Page d\'accueil', image: `${assets}screenshots/etcbc-accueil.png`, url: 'https://www.etcbc-charpente.com/' },
-    { tag: 'Galerie chantiers', image: `${assets}screenshots/etcbc-realisations.png`, url: 'https://www.etcbc-charpente.com/realisations.html' },
+    { tag: 'Galerie chantiers', image: `${assets}screenshots/etcbc-realisations.png`, url: 'https://www.etcbc-charpente.com/realisations' },
   ],
   betweenText:
     'Métiers, zone d\'intervention et galerie filtrable. Des demandes de devis qualifiées reçues par e-mail.',
