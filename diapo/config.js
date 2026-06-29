@@ -7,7 +7,7 @@ const assets = '../assets/';
 export const brand = {
   name: 'Bulle ton site',
   byline: 'Création de sites web',
-  url: 'https://bulletonsite.com',
+  url: 'https://www.bulletonsite.com',
   logo: `${assets}favicon.svg`,
 };
 
@@ -33,7 +33,7 @@ export const team = [
   },
   {
     name: 'Hugo Davion',
-    role: 'Développeur web',
+    role: 'Création & mise en ligne du site',
     photo: `${assets}hugo-portrait.png`,
   },
 ];
@@ -42,7 +42,7 @@ export const services = [
   { title: 'Identité visuelle', text: 'Logo, couleurs, typographie' },
   { title: 'Site qui rassure', text: 'Présentation claire en 30 secondes' },
   { title: 'Demandes & réservations', text: 'Formulaires simples par e-mail' },
-  { title: 'Visible sur Google', text: 'Structure pensée pour le référencement' },
+  { title: 'Visible sur Google', text: 'Pour que vos clients vous trouvent facilement' },
 ];
 
 export const compare = {
@@ -88,14 +88,14 @@ export const processDelivery = {
       who: 'Audrey · Communication',
     },
     {
-      title: 'Prototype & identité visuelle',
-      text: 'Maquette et direction graphique en 2–3 jours. Vous validez avant le dev.',
+      title: 'Maquette & identité visuelle',
+      text: 'Premier aperçu et direction graphique en 2–3 jours. Vous validez avant la version finale.',
       who: 'Niyazi · Identité visuelle',
     },
     {
-      title: 'Développement & mise en ligne',
-      text: 'Intégration, tests mobile, publication. Paiement 30 % à la commande, 70 % à la mise en ligne.',
-      who: 'Hugo · Développement web',
+      title: 'Mise en ligne',
+      text: 'Tests sur téléphone, publication. Paiement 30 % à la commande, 70 % à la mise en ligne.',
+      who: 'Hugo · Mise en ligne & technique',
     },
   ],
   firstPreview: '2–3 jours',
@@ -114,7 +114,7 @@ export const guarantees = [
   'Devis gratuit sous 48 h',
   'Paiement 30 % / 70 %',
   'Pack tranquillité · 30 – 50 €/mois',
-  'Équipe dédiée du brief à la livraison',
+  'Équipe dédiée du premier échange à la livraison',
 ];
 
 export const pricing = {
@@ -123,8 +123,8 @@ export const pricing = {
   from: 500,
   tiers: [
     { label: 'Site vitrine', range: '500 – 1 500 €', highlight: true },
-    { label: 'Site dynamique', range: '2 000 – 3 500 €' },
-    { label: 'Outil métier', range: '4 000 €+' },
+    { label: 'Site à mettre à jour soi-même', range: '2 000 – 3 500 €' },
+    { label: 'Outil sur mesure', range: '4 000 €+' },
   ],
   example: 'Ex. chambre d\'hôtes · ~900 – 1 200 €',
   maintenance: 'Pack tranquillité · 30 – 50 €/mois',
@@ -141,7 +141,7 @@ const projectEla = {
     { tag: 'Réservation', image: `${assets}screenshots/maison-ela-reservation.png`, url: 'https://www.lamaisondela.com/#reservation' },
   ],
   betweenText:
-    'Identité visuelle créée avec nous, vitrine multilingue et réservations par e-mail. Les voyageurs réservent en direct, sans commission.',
+    'Identité visuelle créée avec nous, site en plusieurs langues et réservations par e-mail. Les voyageurs réservent en direct, sans commission.',
 };
 
 const projectQuai = {
@@ -155,7 +155,7 @@ const projectQuai = {
     { tag: 'Réservation', image: `${assets}screenshots/quai-reservation.png`, url: 'https://quai-des-reves.vercel.app/#reserver' },
   ],
   betweenText:
-    'Vitrine simple : identité déjà en place, histoire du lieu et formulaire de nuitée. Prototype livré en 3 jours.',
+    'Vitrine simple : identité déjà en place, histoire du lieu et formulaire de nuitée. Maquette livrée en 3 jours.',
 };
 
 const projectEtcbc = {
@@ -169,19 +169,19 @@ const projectEtcbc = {
     { tag: 'Galerie chantiers', image: `${assets}screenshots/etcbc-realisations.png`, url: 'https://www.etcbc-charpente.com/realisations' },
   ],
   betweenText:
-    'Vitrine simple : logo et charte déjà existants, galerie filtrable et demandes de devis par e-mail.',
+    'Vitrine simple : logo et charte déjà existants, galerie de chantiers et demandes de devis par e-mail.',
 };
 
 const projectSqcdp = {
   type: 'project',
   duration: 5,
   name: 'SQCDP',
-  sector: 'Outil métier · PWA',
+  sector: 'Suivi d\'atelier · outil sur mesure',
   badge: 'Sur mesure',
   url: 'https://sqcdp.vercel.app/',
   screens: [{ tag: 'Tableaux de bord', url: 'https://sqcdp.vercel.app/' }],
   betweenText:
-    'Application PWA : tableaux SQCDP animés, mode hors-ligne atelier. Pas seulement des vitrines : des outils métier.',
+    'Outil de suivi d\'atelier : tableaux de bord animés, utilisable sans connexion sur le terrain.',
 };
 
 /** Version complète (~75 s) */
@@ -191,20 +191,20 @@ export const slides = [
     duration: 4,
     line1: 'Votre site internet,',
     line2: 'conçu en équipe.',
-    sub: 'Communication, identité visuelle & développement · devis gratuit sous 48 h.',
-    caption: 'Artisans · Gîtes · Commerces · Outils métier',
+    sub: 'Communication, identité visuelle & mise en ligne · devis gratuit sous 48 h.',
+    caption: 'Artisans · Gîtes · Commerces · Outils sur mesure',
   },
   {
     type: 'intro',
     duration: 5,
-    eyebrow: 'Identité visuelle · communication · développement',
+    eyebrow: 'Identité visuelle · communication · mise en ligne',
     title: 'Sites web & outils',
     titleEm: 'sur mesure',
     subtitle:
       'Bulle ton site réunit trois métiers : une équipe qui conçoit vitrines, réservations et outils adaptés à votre activité.',
     bullets: [
-      'Prototype en 2–3 jours · Livraison en 1 à 2 semaines',
-      'Mobile, Google & formulaires simples',
+      'Maquette en 2–3 jours · Livraison en 1 à 2 semaines',
+      'Téléphone, Google & formulaires simples',
       'Trois expertises complémentaires, sans jargon',
     ],
   },
@@ -226,7 +226,7 @@ export const slides = [
     title: 'Un devis gratuit',
     titleEm: 'sous 48 h',
     sub: 'Devis gratuit · Sans engagement',
-    caption: 'bulletonsite.com',
+    caption: 'www.bulletonsite.com',
   },
 ];
 
@@ -246,8 +246,8 @@ export const slidesShort = [
     eyebrow: 'Bulle ton site',
     title: 'Sites & outils',
     titleEm: 'sur mesure',
-    subtitle: 'Communication, identité visuelle et développement réunis.',
-    bullets: ['Prototype en 2–3 jours', 'Équipe dédiée'],
+    subtitle: 'Communication, identité visuelle et mise en ligne réunies.',
+    bullets: ['Maquette en 2–3 jours', 'Équipe dédiée'],
   },
   { type: 'team', duration: 4 },
   { type: 'compare', duration: 4 },
@@ -261,7 +261,7 @@ export const slidesShort = [
     title: 'Un devis gratuit',
     titleEm: 'sous 48 h',
     sub: 'Sans engagement',
-    caption: 'bulletonsite.com',
+    caption: 'www.bulletonsite.com',
   },
 ];
 

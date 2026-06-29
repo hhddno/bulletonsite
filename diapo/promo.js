@@ -198,7 +198,7 @@ function renderSlide(data, i) {
       <p class="slide__eyebrow">Notre méthode</p>
       <h2 class="slide__title">${escapeHtml(processDelivery.title)}</h2>
       <div class="slide__delivery-badges">
-        <span><strong>${escapeHtml(processDelivery.firstPreview)}</strong> premier prototype</span>
+        <span><strong>${escapeHtml(processDelivery.firstPreview)}</strong> première maquette</span>
         <span><strong>${escapeHtml(processDelivery.total)}</strong> livraison</span>
       </div>
       <div class="slide__process slide__process--compact">${stepsHtml}</div>

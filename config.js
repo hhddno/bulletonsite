@@ -47,7 +47,7 @@ export const brand = {
 export const seo = {
   title: 'Bulle ton site · Création de sites web sur mesure',
   description:
-    'Sites web et outils sur mesure : communication, identité visuelle et développement réunis. Artisans, gîtes, commerces. Vitrine dès 500 € · devis gratuit sous 48 h.',
+    'Sites web et outils sur mesure : communication, identité visuelle et création sur mesure. Artisans, gîtes, commerces. Vitrine dès 500 € · devis gratuit sous 48 h.',
   ogImage: 'assets/og-bubble.svg',
 };
 
@@ -55,7 +55,7 @@ export const guarantees = [
   'Devis gratuit sous 48 h',
   'Prix affichés indicatifs · toujours sur devis',
   'Paiement 30 % à la commande, 70 % à la mise en ligne',
-  'Hébergement : autonomie ou pack tranquillité',
+  'Après la mise en ligne : vous gérez seul ou pack tranquillité',
   'Équipe dédiée',
 ];
 
@@ -66,7 +66,7 @@ export const contact = {
   phoneTel: '+33613809565',
   zone: 'Partout en France · 100 % à distance',
   response: 'Audrey vous recontacte sous 48 h',
-  formSub: 'Brief gratuit · Sans engagement · un seul interlocuteur pour vous',
+  formSub: 'Premier échange gratuit · Sans engagement · un seul interlocuteur pour vous',
   photo: 'assets/hugo-portrait.png',
 };
 
@@ -83,8 +83,8 @@ export const form = {
   needs: [
     { value: '', label: 'Choisir…', placeholder: true },
     { value: 'Site vitrine sur mesure', label: 'Site vitrine sur mesure' },
-    { value: 'Site dynamique & catalogue', label: 'Site dynamique & catalogue' },
-    { value: 'Application web & outil métier', label: 'Application web & outil métier' },
+    { value: 'Site à mettre à jour soi-même', label: 'Site à mettre à jour soi-même (catalogue, actualités)' },
+    { value: 'Application web & outil métier', label: 'Outil sur mesure (devis, réservations, suivi…)' },
     { value: 'Identité visuelle (logo, charte)', label: 'Identité visuelle (logo, charte)' },
     { value: 'Site + identité visuelle', label: 'Site + identité visuelle' },
     { value: 'Je ne sais pas encore', label: 'Je ne sais pas encore — conseillez-moi' },
@@ -92,14 +92,14 @@ export const form = {
   budgets: [
     { value: 'Non précisé', label: 'Budget : non précisé' },
     { value: 'Site vitrine (500 – 1 500 €)', label: 'Site vitrine (500 – 1 500 €)' },
-    { value: 'Site dynamique (2 000 – 3 500 €)', label: 'Site dynamique (2 000 – 3 500 €)' },
-    { value: 'Outil métier (4 000 €+)', label: 'Outil métier (4 000 €+)' },
+    { value: 'Site dynamique (2 000 – 3 500 €)', label: 'Site à mettre à jour soi-même (2 000 – 3 500 €)' },
+    { value: 'Outil métier (4 000 €+)', label: 'Outil sur mesure (4 000 €+)' },
     { value: 'Identité visuelle (250 – 800 €)', label: 'Identité visuelle (250 – 800 €)' },
     { value: 'Harmonisation logo (160 – 250 €)', label: 'Harmonisation logo (160 – 250 €)' },
   ],
   hosting: [
     { value: 'Pas encore décidé', label: 'Après mise en ligne : pas encore décidé' },
-    { value: 'Autonomie totale', label: 'Autonomie totale (pas d\'abonnement chez nous)' },
+    { value: 'Autonomie totale', label: 'Je gère l\'hébergement moi-même (pas d\'abonnement chez nous)' },
     { value: 'Pack tranquillité', label: 'Pack tranquillité (30 – 50 €/mois)' },
   ],
   timelines: [
@@ -127,19 +127,19 @@ export const nav = [
 ];
 
 export const hero = {
-  eyebrow: 'Identité visuelle · communication · développement',
+  eyebrow: 'Identité visuelle · communication · mise en ligne',
   title: 'Votre site internet,',
   titleEm: 'conçu en équipe.',
   lead:
-    'Communication, création d\'identité visuelle et développement réunis : vitrines, réservations, outils métier. Nous créons ce dont vous avez besoin. Un seul point de contact, une équipe complète derrière, du brief au prototype en quelques jours.',
-  chips: ['Équipe dédiée', 'Prototype en 2–3 jours', 'Mobile & Google'],
+    'Communication, identité visuelle et mise en ligne réunies : vitrines, réservations, outils sur mesure. Une équipe complète, un seul interlocuteur — de la première discussion à la maquette en quelques jours.',
+  chips: ['Équipe dédiée', 'Maquette en 2–3 jours', 'Téléphone & Google'],
   ctaPrimary: 'Demander un devis gratuit',
   ctaSecondary: 'Voir nos réalisations',
   stats: [
     { value: '4', suffix: '+', label: 'sites livrés' },
     { value: '500', suffix: '€', label: 'vitrine dès · sur devis' },
     { value: '1–2', suffix: ' sem.', label: 'de création' },
-    { value: '2–3', suffix: ' jours', label: 'premier prototype' },
+    { value: '2–3', suffix: ' jours', label: 'première maquette' },
   ],
 };
 
@@ -151,19 +151,19 @@ export const sectors = [
 ];
 
 export const servicesIntro = {
-  subtitle: 'Sur mesure, sans modèle préfabriqué — communication, identité et développement réunis.',
+  subtitle: 'Sur mesure, sans modèle préfabriqué — communication, identité et mise en ligne réunies.',
 };
 
 export const services = [
   {
     label: 'Équipe',
     title: 'Trois métiers complémentaires',
-    text: 'Audrey écoute votre besoin, Niyazi conçoit l\'identité, Hugo développe et met en ligne. Trois expertises, un seul fil de discussion.',
+    text: 'Audrey écoute votre besoin, Niyazi conçoit l\'identité, Hugo crée et met le site en ligne. Trois expertises, un seul fil de discussion.',
   },
   {
     label: 'Sur mesure',
-    title: 'Vitrine, dynamique ou outil métier',
-    text: 'Site vitrine, catalogue évolutif ou application terrain (PWA, tableaux de bord…) : nous créons ce dont vous avez besoin, pas un thème générique.',
+    title: 'Vitrine, site modifiable ou outil sur mesure',
+    text: 'Une vitrine simple, un site que vous mettez à jour vous-même, ou un outil sur tablette et téléphone : nous créons ce dont vous avez besoin, pas un modèle générique.',
   },
   {
     label: 'Option',
@@ -177,13 +177,13 @@ export const services = [
   },
   {
     label: 'Rythme',
-    title: 'Prototype en 2–3 jours',
-    text: 'Une première maquette rapidement, puis 1 à 2 semaines pour la version finale selon le projet et vos retours.',
+    title: 'Maquette en 2–3 jours',
+    text: 'Un premier aperçu de votre site rapidement, puis 1 à 2 semaines pour la version finale selon le projet et vos retours.',
   },
   {
     label: 'Qualité',
-    title: 'Mobile, léger & visible',
-    text: 'Site rapide sur téléphone, code propre et bases SEO pour être trouvé quand on cherche votre métier près de chez vous.',
+    title: 'Sur téléphone & sur Google',
+    text: 'Site lisible et rapide sur mobile, pensé pour que vos clients vous trouvent quand ils cherchent votre métier près de chez eux.',
   },
 ];
 
@@ -198,7 +198,7 @@ export const projects = [
     description:
       'Site vitrine pour une chambre d\'hôtes : identité visuelle créée avec nous, présentation du lieu, séjours thématiques et gestion des réservations par e-mail.',
     outcome: 'Les voyageurs réservent en direct, sans commission intermédiaire.',
-    results: ['Identité visuelle', 'Réservations par e-mail', 'Site multilingue'],
+    results: ['Identité visuelle', 'Réservations par e-mail', 'Plusieurs langues'],
     tags: ['Vitrine', 'Identité', 'Réservation'],
   },
   {
@@ -211,8 +211,8 @@ export const projects = [
     description:
       'Vitrine simple pour une maison d\'hôtes : identité déjà en place, histoire du lieu, chambres et formulaire pour demander une nuitée.',
     outcome: 'Une vitrine chaleureuse qui donne envie de réserver sur place.',
-    results: ['Prototype en 3 jours', 'Formulaire nuitées intégré', '100 % à distance'],
-    tags: ['Storytelling', 'Réservation'],
+    results: ['Maquette en 3 jours', 'Formulaire nuitées intégré', '100 % à distance'],
+    tags: ['Histoire du lieu', 'Réservation'],
   },
   {
     id: 'etcbc',
@@ -224,7 +224,7 @@ export const projects = [
     description:
       'Vitrine simple pour l\'entreprise : logo et charte déjà existants, métiers, zone d\'intervention, galerie de chantiers et demande de devis.',
     outcome: 'Des demandes de devis qualifiées, reçues par e-mail.',
-    results: ['Galerie chantiers filtrable', 'Demandes de devis ciblées', 'Mobile optimisé'],
+    results: ['Galerie par type de chantier', 'Demandes de devis ciblées', 'Parfait sur téléphone'],
     tags: ['Vitrine', 'Galerie', 'Devis'],
   },
 ];
@@ -234,15 +234,15 @@ export const projectsCustom = [
     id: 'sqcdp',
     category: 'sur-mesure',
     name: 'SQCDP',
-    sector: 'Pilotage industriel · PWA',
+    sector: 'Pilotage industriel · outil sur mesure',
     url: 'https://sqcdp.vercel.app/',
     embed: 'screenshot',
     image: null,
     description:
-      'Application web PWA : tableaux de bord SQCDP animés, PDCA, roulette de réunion et mode hors-ligne pour l\'atelier.',
-    outcome: 'Un outil métier sur mesure, utilisable au bureau comme en atelier.',
-    results: ['PWA installable', 'Mode hors-ligne atelier', 'Tableaux SQCDP animés'],
-    tags: ['React', 'TypeScript', 'PWA'],
+      'Outil de suivi d\'atelier : tableaux de bord animés, réunions et mode sans connexion pour le terrain.',
+    outcome: 'Un outil pensé pour le métier, utilisable au bureau comme en atelier.',
+    results: ['Utilisable sur tablette', 'Fonctionne sans réseau en atelier', 'Suivi qualité en direct'],
+    tags: ['Outil métier', 'Atelier', 'Sur mesure'],
   },
 ];
 
@@ -279,15 +279,15 @@ export const process = {
     },
     {
       num: '02',
-      title: 'Prototype & identité visuelle',
-      text: 'Première maquette et direction graphique en 2–3 jours. Vous validez avant le développement final.',
+      title: 'Maquette & identité visuelle',
+      text: 'Premier aperçu et direction graphique en 2–3 jours. Vous validez avant la version finale.',
       who: 'Niyazi · Identité visuelle & graphisme',
     },
     {
       num: '03',
-      title: 'Développement & mise en ligne',
-      text: 'Intégration, tests mobile, publication et prise en main. Paiement en 2 fois : 30 % à la commande, 70 % à la mise en ligne.',
-      who: 'Hugo · Développement web',
+      title: 'Mise en ligne',
+      text: 'Tests sur téléphone, publication et prise en main. Paiement en 2 fois : 30 % à la commande, 70 % à la mise en ligne.',
+      who: 'Hugo · Mise en ligne & technique',
     },
   ],
 };
@@ -307,42 +307,42 @@ export const pricing = {
       range: '500 – 1 500 €',
       rangeNote: 'Fourchette indicative · sur devis',
       description:
-        'Présence professionnelle pour rassurer vos prospects et présenter votre savoir-faire. Site de 3 à 5 pages, design fluide, code léger, structure pensée pour Google.',
+        'Présence professionnelle pour rassurer vos prospects et présenter votre savoir-faire. Site de 3 à 5 pages, fluide sur téléphone, pensé pour être trouvé sur Google.',
       features: [
         '3 à 5 pages + mentions légales',
         'Formulaire contact ou demande par e-mail',
-        'Mobile & bases SEO',
-        'Mise en ligne · 1 à 2 tours de retours',
+        'Parfait sur téléphone · visible sur Google',
+        'Mise en ligne · 1 à 2 séries de corrections',
       ],
       highlight: true,
       badge: 'Le plus demandé',
     },
     {
-      label: 'Site dynamique & catalogue',
-      subtitle: 'Publiez votre contenu en autonomie',
+      label: 'Site à mettre à jour soi-même',
+      subtitle: 'Vous modifiez textes et photos sans nous',
       range: '2 000 – 3 500 €',
-      rangeNote: 'Sur devis · cahier des charges',
+      rangeNote: 'Sur devis · selon votre projet',
       description:
-        'Vous mettez à jour chantiers, réalisations ou actualités sans repasser par nous. Espace d\'administration privé, simple et sécurisé.',
+        'Vous mettez à jour chantiers, réalisations ou actualités quand vous voulez. Une page privée, simple et sécurisée, pour gérer votre contenu.',
       features: [
-        'Back-office intuitif',
-        'Blog, catalogue ou portfolio évolutif',
-        'Plusieurs contributeurs possibles',
-        'Pour les publications fréquentes en autonomie',
+        'Page simple pour modifier votre site',
+        'Actualités, blog ou galerie de réalisations',
+        'Plusieurs personnes peuvent publier',
+        'Idéal si vous ajoutez du contenu souvent',
       ],
     },
     {
-      label: 'Application web & outil métier',
+      label: 'Outil sur mesure',
       subtitle: 'Automatiser votre quotidien',
       range: 'À partir de 4 000 €',
       rangeNote: 'Sur devis · projet sur mesure',
       description:
-        'Espace client, devis automatiques, réservation avancée, tableau de bord interne ou PWA terrain : une solution digitale conçue pour votre métier.',
+        'Espace client, devis automatiques, réservation avancée, suivi interne ou outil sur téléphone et tablette : une solution pensée pour votre métier.',
       features: [
-        'Cahier des charges dédié',
-        'Développement sur mesure',
-        'Outils métier & automatisations',
-        'Ex. SQCDP · pilotage atelier',
+        'On part de votre besoin réel',
+        'Conçu pour votre façon de travailler',
+        'Devis, réservations, suivi… selon le projet',
+        'Ex. SQCDP · suivi d\'atelier',
       ],
     },
   ],
@@ -352,7 +352,7 @@ export const pricing = {
     range: '250 – 800 €',
     rangeNote: 'Sur devis · en option ou en amont du site',
     description:
-      'Prestation distincte du développement web. Commandable seule, avant le site, ou en complément. Logo déjà prêt ? Nous l\'harmonisons dans le site sans refaire une identité complète.',
+      'Prestation distincte de la création du site. Commandable seule, avant le site, ou en complément. Logo déjà prêt ? Nous l\'harmonisons dans le site sans refaire une identité complète.',
     items: [
       { label: 'Harmonisation (logo fourni)', range: '160 – 250 €' },
       { label: 'Création de logo', range: '250 – 450 €' },
@@ -366,7 +366,7 @@ export const pricing = {
     rows: [
       { profile: 'Essentiel', content: '3–4 pages, logo fourni, contact', range: '500 – 700 €' },
       { profile: 'Complet', content: 'Galerie, réservation e-mail (gîte, artisan)', range: '900 – 1 200 €' },
-      { profile: 'Renforcé', content: 'Multilingue, contenu structuré, SEO local', range: '1 200 – 1 500 €' },
+      { profile: 'Renforcé', content: 'Plusieurs langues, contenu soigné, visible près de chez vous sur Google', range: '1 200 – 1 500 €' },
     ],
   },
   examples: {
@@ -375,7 +375,7 @@ export const pricing = {
       { name: 'Quai des Rêves', type: 'Vitrine simple', range: '~650 – 900 €' },
       { name: 'ETCBC Charpente', type: 'Vitrine simple', range: '~800 – 1 100 €' },
       { name: "La Maison d'Ela", type: 'Vitrine + réservations + identité visuelle', range: '~1 100 – 1 500 €' },
-      { name: 'SQCDP', type: 'Outil métier · PWA', range: '4 000 €+' },
+      { name: 'SQCDP', type: 'Outil sur mesure · atelier', range: '4 000 €+' },
     ],
   },
   whyUs: {
@@ -387,11 +387,11 @@ export const pricing = {
       },
       {
         title: 'Rapide & fiable',
-        text: 'Sites légers, adaptés au mobile, architecture simple et peu exposée aux failles des CMS non maintenus.',
+        text: 'Sites rapides sur téléphone, simples à faire évoluer, sans logiciel lourd à maintenir.',
       },
       {
         title: 'Vous restez propriétaire',
-        text: 'Le site vous appartient ; code et contenus remis à la livraison (détail dans le devis).',
+        text: 'Le site vous appartient ; fichiers et contenus remis à la livraison (détail dans le devis).',
       },
     ],
   },
@@ -401,7 +401,7 @@ export const pricing = {
   },
   hosting: [
     {
-      label: 'Autonomie totale',
+      label: 'Gestion en autonomie',
       price: 'Pas d\'abonnement',
       priceNote: 'mensuel chez nous',
       forWho:
@@ -419,7 +419,7 @@ export const pricing = {
       priceNote: 'confirmé sur devis',
       forWho: 'Vous déléguez la technique et nous écrivez pour les petites mises à jour.',
       features: [
-        'Sérénité ~30 € : hébergement, HTTPS, sauvegardes, surveillance, domaine',
+        'Sérénité ~30 € : hébergement, connexion sécurisée, sauvegardes, surveillance, nom de domaine',
         'Actif ~50 € : tout Sérénité + jusqu\'à 30–45 min de modifs texte/photo par mois',
         'Nouvelle page ou fonctionnalité = devis séparé',
       ],
@@ -430,7 +430,7 @@ export const pricing = {
     'Toujours sur devis : les montants affichés ne constituent pas une offre ferme',
     'Identité visuelle facturée à part si demandée',
     'Devis gratuit · Sans engagement · Paiement 30 % à la commande, 70 % à la mise en ligne',
-    'Délais indicatifs : prototype en 2–3 jours, livraison en 1 à 2 semaines',
+    'Délais indicatifs : maquette en 2–3 jours, livraison en 1 à 2 semaines',
   ],
 };
 
@@ -472,7 +472,7 @@ export const comparison = {
     {
       label: 'Temps à y consacrer',
       them: 'Plusieurs heures (voire jours) de prise en main',
-      us: 'Quelques échanges : brief, retours, validation',
+      us: 'Quelques échanges : premier contact, retours, validation',
     },
     {
       label: 'Résultat',
@@ -489,35 +489,35 @@ export const faq = [
   },
   {
     q: 'Qui accompagne mon projet au quotidien ?',
-    a: 'Audrey est votre point de contact : brief, suivi et retours. Niyazi conçoit l\'identité visuelle, Hugo développe et met en ligne. Vous avez un seul fil de discussion avec nous, même si plusieurs expertises interviennent sur le projet.',
+    a: 'Audrey est votre point de contact : premier échange, suivi et retours. Niyazi conçoit l\'identité visuelle, Hugo prépare et met le site en ligne. Vous avez un seul fil de discussion avec nous, même si plusieurs expertises interviennent sur le projet.',
   },
   {
     q: 'L\'identité visuelle est-elle incluse dans le site vitrine ?',
     a: 'Non par défaut. Vous pouvez arriver avec votre logo, commander une création à part (250 – 800 € selon le scope), ou combiner site et identité sur un seul devis. L\'harmonisation d\'un logo fourni est facturée à part (environ 160 – 250 €) ou intégrée au devis web sans refaire une charte complète.',
   },
   {
-    q: 'Ai-je besoin d\'un site dynamique pour mettre à jour mon site ?',
-    a: 'Pas forcément. Pour beaucoup d\'artisans et de gîtes, un site vitrine suffit : vous nous envoyez vos changements (pack tranquillité ou devis ponctuel). Le site dynamique est pertinent si vous publiez souvent en autonomie via un back-office.',
+    q: 'Ai-je besoin d\'un site que je peux modifier moi-même ?',
+    a: 'Pas forcément. Pour beaucoup d\'artisans et de gîtes, une vitrine suffit : vous nous envoyez vos changements (pack tranquillité ou devis ponctuel). Un site modifiable par vous est utile si vous publiez souvent (actualités, galerie, catalogue) sans passer par nous.',
   },
   {
     q: 'Combien de temps pour avoir mon site ?',
-    a: 'Comptez 2–3 jours pour un premier prototype, puis 1 à 2 semaines pour la version finale selon le nombre de pages et vos retours.',
+    a: 'Comptez 2–3 jours pour une première maquette, puis 1 à 2 semaines pour la version finale selon le nombre de pages et vos retours.',
   },
   {
     q: 'Comment modifier mon site après la livraison ?',
-    a: 'Deux options : l\'autonomie totale (hébergement et domaine à votre nom, ~50 – 80 €/an chez le fournisseur, sans abonnement mensuel chez Bulle ton site ; modifications ensuite sur devis ponctuel) ou le pack tranquillité (30 – 50 €/mois, petites mises à jour texte/photo incluses selon formule).',
+    a: 'Deux options : la gestion en autonomie (hébergement et nom de domaine à votre nom, ~50 – 80 €/an chez le fournisseur, sans abonnement mensuel chez Bulle ton site ; modifications ensuite sur devis ponctuel) ou le pack tranquillité (30 – 50 €/mois, petites mises à jour texte/photo incluses selon formule).',
   },
   {
     q: 'Que comprend le pack tranquillité ?',
-    a: 'Formule Sérénité (~30 €/mois) : hébergement professionnel, HTTPS, sauvegardes, surveillance et gestion du nom de domaine. Formule Actif (~50 €/mois) : tout Sérénité + jusqu\'à 30–45 minutes de modifications texte ou photo par mois sur simple message. Une nouvelle page ou fonctionnalité fait l\'objet d\'un devis séparé. Le détail est confirmé sur devis.',
+    a: 'Formule Sérénité (~30 €/mois) : hébergement professionnel, connexion sécurisée, sauvegardes, surveillance et gestion du nom de domaine. Formule Actif (~50 €/mois) : tout Sérénité + jusqu\'à 30–45 minutes de modifications texte ou photo par mois sur simple message. Une nouvelle page ou fonctionnalité fait l\'objet d\'un devis séparé. Le détail est confirmé sur devis.',
   },
   {
     q: 'Le nom de domaine est-il inclus ?',
-    a: 'En pack tranquillité, nous pouvons le gérer pour vous (inclus selon devis). En autonomie totale, vous le souscrivez à votre nom : comptez environ 50 – 80 €/an côté fournisseur pour domaine et hébergement, sans marge cachée de notre côté.',
+    a: 'En pack tranquillité, nous pouvons le gérer pour vous (inclus selon devis). En gestion en autonomie, vous le souscrivez à votre nom : comptez environ 50 – 80 €/an côté fournisseur pour le nom de domaine et l\'hébergement, sans marge cachée de notre côté.',
   },
   {
     q: 'Travaillez-vous avec mon métier ?',
-    a: 'Oui : artisans, chambres d\'hôtes, commerces, restaurateurs, professions libérales… Si vous avez un projet particulier (outil interne, réservations, intranet), décrivez-le : on vous dit franchement si on peut vous accompagner.',
+    a: 'Oui : artisans, chambres d\'hôtes, commerces, restaurateurs, professions libérales… Si vous avez un besoin particulier (outil interne, réservations en ligne), décrivez-le : on vous dit franchement si on peut vous accompagner.',
   },
   {
     q: 'Travaillez-vous à distance ?',
@@ -556,19 +556,19 @@ export const team = [
     name: 'Niyazi Azaiez',
     role: 'Identité visuelle · Graphiste',
     photo: 'assets/niyazi-azaiez.png',
-    bio: 'Logo, couleurs, typographie et maquettes : une identité visuelle pensée pour votre métier, validée avant le développement.',
+    bio: 'Logo, couleurs, typographie et maquettes : une identité visuelle pensée pour votre métier, validée avant la mise en ligne.',
   },
   {
     name: 'Hugo Davion',
-    role: 'Développeur web',
+    role: 'Création & mise en ligne du site',
     photo: 'assets/hugo-portrait.png',
-    bio: 'Il intègre le site, optimise mobile et référencement, puis publie en ligne. Vous nous envoyez vos changements, on s\'en occupe.',
+    bio: 'Il prépare le site, optimise l\'affichage sur téléphone et la visibilité sur Google, puis le met en ligne. Vous nous envoyez vos changements, on s\'en occupe.',
   },
 ];
 
 export const about = {
   title: "L'équipe",
-  text: 'Audrey (communication), Niyazi (identité visuelle) et Hugo (développement) : trois métiers complémentaires pour un site cohérent de A\u00a0à\u00a0Z.',
+  text: 'Audrey (communication), Niyazi (identité visuelle) et Hugo (mise en ligne) : trois métiers complémentaires pour un site cohérent de A\u00a0à\u00a0Z.',
   blurb: 'Pas de sous-traitance opaque : vous savez qui fait quoi, à chaque étape du projet.',
 };
 

@@ -392,7 +392,7 @@ function initMarquee() {
   const tags = [
     ...sectors.map((s) => ({ text: s, accent: false })),
     { text: 'Devis gratuit', accent: true },
-    { text: 'Prototype en 2–3 jours', accent: true },
+    { text: 'Maquette en 2–3 jours', accent: true },
     { text: 'Paiement en 2 fois', accent: true },
   ];
   const items = [...tags, ...tags];
@@ -711,8 +711,8 @@ function initCustomProjects() {
 
   el.innerHTML = `
     <p class="custom-projects__note reveal">
-      Le carrousel inclut aussi des <strong>outils sur mesure</strong> : applications métier, PWA et tableaux de bord.
-      Faites défiler jusqu'à <strong>SQCDP</strong> pour un exemple interactif.
+      Le carrousel inclut aussi des <strong>outils sur mesure</strong> (suivi d'atelier, tableaux de bord…).
+      Faites défiler jusqu'à <strong>SQCDP</strong> pour un exemple.
     </p>`;
 }
 
