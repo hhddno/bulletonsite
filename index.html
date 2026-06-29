@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bulle ton site, création de sites web sur mesure. Communication, identité visuelle et développement. Devis gratuit sous 24 h." />
+  <meta name="description" content="Sites web et outils sur mesure : communication, identité visuelle et développement réunis. Artisans, gîtes, commerces. Vitrine dès 500 € · devis gratuit sous 48 h." />
   <title>Bulle ton site · Création de sites web sur mesure</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="canonical" href="https://bulletonsite.com/" />
@@ -11,16 +11,20 @@
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:site_name" content="Bulle ton site" />
   <meta property="og:title" content="Bulle ton site · Création de sites web sur mesure" id="og-title" />
-  <meta property="og:description" content="Sites web et outils sur mesure. Communication, identité visuelle et développement réunis. Dès 450 €." id="og-desc" />
+  <meta property="og:description" content="Sites web et outils sur mesure : communication, identité visuelle et développement réunis. Artisans, gîtes, commerces. Vitrine dès 500 € · devis gratuit sous 48 h." id="og-desc" />
   <meta property="og:url" content="https://bulletonsite.com/" />
-  <meta property="og:image" content="https://bulletonsite.com/assets/og-bubble.svg" />
+  <meta property="og:image" content="https://bulletonsite.com/assets/og-bubble.svg" id="og-image" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bulle ton site · Création de sites web sur mesure" id="twitter-title" />
+  <meta name="twitter:description" content="Sites web et outils sur mesure : communication, identité visuelle et développement réunis. Vitrine dès 500 € · devis gratuit sous 48 h." id="twitter-desc" />
+  <meta name="twitter:image" content="https://bulletonsite.com/assets/og-bubble.svg" id="twitter-image" />
   <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
   <link rel="stylesheet" href="https://fonts.bunny.net/css?family=fraunces:600&family=inter:400,600&display=swap" />
   <link rel="stylesheet" href="themes.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-theme="mineral">
+  <a class="skip-link" href="#main">Aller au contenu</a>
 
   <div class="page-backdrop" aria-hidden="true">
     <canvas id="site-bubbles" class="site-bubbles"></canvas>
@@ -28,7 +32,7 @@
 
   <header class="header" id="header">
     <div class="header__inner">
-      <a class="logo" href="#">
+      <a class="logo" href="/#hero">
         <span class="logo__name" data-brand="name"></span>
         <span class="logo__by" data-brand="byline"></span>
       </a>
@@ -40,7 +44,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero" id="hero">
       <div class="hero__bg" aria-hidden="true">
         <div class="hero__orb hero__orb--1"></div>
@@ -81,6 +85,7 @@
         <header class="section__head reveal">
           <p class="eyebrow">Services</p>
           <h2 class="section__title">Ce que vous <em>obtenez</em></h2>
+          <p class="section__sub reveal" id="services-sub"></p>
         </header>
         <div class="grid grid--services" id="services-grid"></div>
       </div>
@@ -91,7 +96,7 @@
         <header class="section__head reveal">
           <p class="eyebrow">Réalisations</p>
           <h2 class="section__title">Ils nous ont fait <em>confiance</em></h2>
-          <p class="section__sub showcase__hint">Sites & outils livrés · aperçu interactif en direct</p>
+          <p class="section__sub showcase__hint">Sites & outils livrés · aperçu en direct dans le carrousel</p>
         </header>
       </div>
       <div class="showcase" id="showcase">
@@ -106,23 +111,24 @@
       <div class="container custom-projects" id="custom-projects"></div>
     </section>
 
-    <section class="section" id="temoignages">
+    <section class="section section--testimonials" id="temoignages">
       <div class="container">
         <header class="section__head reveal">
           <p class="eyebrow">Témoignages</p>
           <h2 class="section__title">Ce qu'en disent nos <em>clients</em></h2>
         </header>
-        <div class="testimonials" id="testimonials-grid"></div>
+        <div class="testimonials" id="testimonials-grid" aria-label="Témoignages clients"></div>
       </div>
     </section>
 
-    <section class="section section--alt" id="process">
+    <section class="section section--process" id="process">
       <div class="container">
         <header class="section__head reveal">
           <p class="eyebrow">Méthode</p>
           <h2 class="section__title" data-process="title"></h2>
+          <p class="section__sub reveal" data-process="subtitle"></p>
         </header>
-        <ol class="timeline" id="timeline"></ol>
+        <ol class="process-path" id="timeline"></ol>
       </div>
     </section>
 
@@ -147,31 +153,33 @@
         <header class="section__head reveal">
           <p class="eyebrow">Tarifs</p>
           <h2 class="section__title" data-pricing="title"></h2>
-          <p class="section__sub reveal" data-pricing="note"></p>
         </header>
-        <p class="pricing-disclaimer reveal" id="pricing-disclaimer"></p>
-        <p class="price-from reveal">
-          <span class="price-from__label">À partir de</span>
-          <strong id="price-from"></strong>
-          <span class="price-from__note" id="price-from-note"></span>
-        </p>
-        <div class="pricing-example reveal" id="pricing-example"></div>
-        <div class="grid grid--pricing" id="pricing-grid"></div>
-        <p class="pricing-hosting reveal" id="pricing-hosting"></p>
+        <div class="pricing-intro reveal" id="pricing-intro"></div>
+        <div class="grid grid--pricing grid--pricing-offers reveal" id="pricing-offers"></div>
+        <article class="pricing-block pricing-block--identity reveal" id="pricing-identity"></article>
+        <div class="pricing-block reveal" id="pricing-anchors"></div>
+        <div class="pricing-block reveal" id="pricing-examples"></div>
+        <div class="pricing-pillars reveal" id="pricing-why"></div>
+        <div class="pricing-block pricing-block--hosting reveal">
+          <header class="pricing-block__head" id="pricing-hosting-intro"></header>
+          <div class="grid grid--pricing-hosting" id="pricing-hosting"></div>
+        </div>
         <ul class="footnotes reveal" id="pricing-footnotes"></ul>
       </div>
     </section>
 
     <section class="section section--promo" id="promo"></section>
 
-    <section class="section" id="about">
+    <section class="section section--about" id="about">
       <div class="container">
         <header class="section__head reveal">
           <p class="eyebrow">À propos</p>
           <h2 class="section__title" data-about="title"></h2>
-          <p class="section__sub" data-about="text"></p>
         </header>
-        <div class="team-blurb reveal" id="team-blurb"></div>
+        <div class="about-intro reveal">
+          <p class="about-intro__lead" data-about="text"></p>
+          <p class="about-intro__note" id="team-blurb"></p>
+        </div>
         <div class="team" id="team-grid"></div>
       </div>
     </section>
@@ -190,7 +198,7 @@
       <div class="container container--narrow">
         <div class="cta-card reveal">
           <p class="eyebrow">Contact</p>
-          <h2 class="cta-card__title">Un devis gratuit <em>sous&nbsp;24&nbsp;h</em></h2>
+          <h2 class="cta-card__title">Un devis gratuit <em>sous&nbsp;48&nbsp;h</em></h2>
           <p class="cta-card__sub">Devis gratuit · Sans engagement</p>
           <p class="cta-card__response" data-contact="response"></p>
           <form class="contact-form" id="contact-form" novalidate>
@@ -222,8 +230,10 @@
               <span>Budget envisagé</span>
               <select name="budget">
                 <option value="Non précisé">Non précisé</option>
-                <option value="450 – 900 €">450 – 900 €</option>
-                <option value="1 000 € et +">1 000 € et +</option>
+                <option value="Site vitrine (500 – 1 500 €)">Site vitrine (500 – 1 500 €)</option>
+                <option value="Site dynamique (2 000 – 3 500 €)">Site dynamique (2 000 – 3 500 €)</option>
+                <option value="Outil métier (4 000 €+)">Outil métier (4 000 €+)</option>
+                <option value="Identité visuelle seule">Identité visuelle seule</option>
               </select>
             </label>
             <label class="contact-form__field">

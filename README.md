@@ -65,12 +65,7 @@ Ne pas ouvrir `index.html` en double-clic (modules ES).
 - Local : http://localhost:3000/diapo/
 - Production : https://bulletonsite.com/diapo/
 
-Contenu édité dans `Entreprise/Communication(PasUnProjet)/`, puis publié :
-
-```bash
-cd ../Communication(PasUnProjet)
-npm run sync:site
-```
+Contenu édité dans `diapo/config.js` (aligné sur `config.js` du site principal).
 
 ## Miniatures iframe (sites clients)
 
@@ -78,18 +73,29 @@ Pour qu'un site client s'affiche dans le carrousel :
 
 1. Copier `embed-templates/vercel.json` sur le site client (CSP `frame-ancestors`)
 2. Remplacer le domaine dans la config
-3. Mettre à jour `config.js` → entrée `portfolio` du client
+3. Mettre à jour `config.js` → entrées `projects` / `projectsCustom`
 
 Voir `embed-templates/LISEZMOI.txt` et `PROMPTS.md`.
+
+Synchroniser la CSP canonique :
+
+```bash
+npm run sync:embed-csp
+```
 
 ## Personnalisation
 
 Tout le contenu marketing est dans **`config.js`** :
 
 - `brand` — nom, baseline, contact
-- `offers` — formules et prix
-- `portfolio` — sites clients (URL, captures, tags)
+- `pricing` — formules et prix
+- `projects` / `projectsCustom` — sites clients (URL, captures, tags)
 - `team`, `testimonials`, `faq`
+
+## Formulaire contact
+
+1. **Recommandé** : clé gratuite [Web3Forms](https://web3forms.com) → `form.web3formsAccessKey` dans `config.js`
+2. **Secours** : FormSubmit (`form.formsubmitEmail`) — activer une fois via l'e-mail de confirmation au premier envoi
 
 ## Déploiement
 
@@ -98,4 +104,4 @@ Push `main` → Vercel auto-deploy sur bulletonsite.com.
 ## Contact
 
 - **Bulle ton site** — [bulletonsite.com](https://bulletonsite.com)
-- Hugo Davion — davionhugo@gmail.com
+- Hugo Davion — bulletonsite@gmail.com

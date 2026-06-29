@@ -2,6 +2,44 @@ export const MINI_W = 1280;
 
 export const MINI_H = 720;
 
+/** Capture distante de secours quand pas d'image locale. */
+export function fallbackScreenshotUrl(url) {
+  return `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=1280`;
+}
+
+export function activateMiniBrowserFallback(browser) {
+  if (!browser || browser.dataset.fallbackActive === 'true') return;
+  browser.dataset.fallbackActive = 'true';
+  browser.classList.add('is-blocked');
+  const fallbackImg = browser.querySelector('.mini-browser__fallback-img');
+  if (fallbackImg) {
+    fallbackImg.hidden = false;
+    fallbackImg.addEventListener(
+      'error',
+      () => {
+        browser.classList.add('is-fallback-failed');
+      },
+      { once: true },
+    );
+  } else {
+    browser.classList.add('is-fallback-failed');
+  }
+  if (browser.classList.contains('mini-browser--16x9')) fitShowcaseBrowser(browser);
+  else fitMiniBrowser(browser);
+}
+
+/** Surveille l'iframe uniquement après mise du src (slide active). Pas de timeout aveugle. */
+export function watchMiniBrowserEmbed(browser) {
+  if (!browser || browser.dataset.embedWatch === 'true') return;
+  if (browser.dataset.embedMode === 'screenshot') return;
+
+  const iframe = browser.querySelector('.mini-browser__iframe');
+  if (!iframe?.src) return;
+
+  browser.dataset.embedWatch = 'true';
+  iframe.addEventListener('error', () => activateMiniBrowserFallback(browser), { once: true });
+}
+
 
 
 /** Chemin asset résolu depuis la page (fiable en local et sur Vercel). */
@@ -41,6 +79,11 @@ function ensureFrame(scaleWrap) {
 
 
 export function fitShowcaseBrowser(browser) {
+  if (browser?.classList.contains('is-blocked') || browser?.classList.contains('is-screenshot')) {
+    fitMiniBrowser(browser);
+    return;
+  }
+
   const vp = browser?.querySelector('.mini-browser__viewport');
   const scale = browser?.querySelector('.mini-browser__scale');
   const iframe = browser?.querySelector('.mini-browser__iframe');

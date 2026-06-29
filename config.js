@@ -20,10 +20,12 @@ export const portfolio = {
   localDiapoUrl: 'http://localhost:3000/diapo/',
   /** Domaines autorisés à afficher ce site en iframe (portfolio + préprod locale). */
   frameAncestors: [
-    'https://bulletonsite.vercel.app',
+    'https://*.vercel.app',
     'https://bulletonsite.com',
     'https://www.bulletonsite.com',
+    'https://dariohd.github.io',
     'http://localhost:3000',
+    'http://localhost:5174',
   ],
 };
 
@@ -39,21 +41,21 @@ export const brand = {
   byline: 'Création de sites web',
   tagline: 'Sites internet sur mesure',
   description:
-    'Bulle ton site, création de sites web sur mesure pour artisans, gîtes et commerces. Vitrines, outils métier, réservations. Devis gratuit sous 24 h.',
+    'Bulle ton site, création de sites web sur mesure pour artisans, gîtes et commerces. Vitrines, outils métier, réservations. Devis gratuit sous 48 h.',
 };
 
 export const seo = {
   title: 'Bulle ton site · Création de sites web sur mesure',
   description:
-    'Sites web et outils sur mesure : communication, création d\'identité visuelle et développement réunis. Artisans, gîtes, commerces. Repères à partir de 450 € · devis gratuit et personnalisé sous 24 h.',
+    'Sites web et outils sur mesure : communication, identité visuelle et développement réunis. Artisans, gîtes, commerces. Vitrine dès 500 € · devis gratuit sous 48 h.',
   ogImage: 'assets/og-bubble.svg',
 };
 
 export const guarantees = [
-  'Devis gratuit sous 24 h',
+  'Devis gratuit sous 48 h',
   'Prix affichés indicatifs · toujours sur devis',
-  'Paiement en 2 fois',
-  'Entretien & maintenance 20 €/mois',
+  'Paiement 30 % à la commande, 70 % à la mise en ligne',
+  'Hébergement : autonomie ou pack tranquillité',
   'Équipe dédiée',
 ];
 
@@ -63,7 +65,7 @@ export const contact = {
   phone: '06 13 80 95 65',
   phoneTel: '+33613809565',
   zone: 'Partout en France · 100 % à distance',
-  response: 'Réponse sous 24 h',
+  response: 'Réponse sous 48 h',
   photo: 'assets/hugo-portrait.png',
 };
 
@@ -71,9 +73,11 @@ export const contact = {
 export const form = {
   /** Clé gratuite sur https://web3forms.com (e-mail bulletonsite@gmail.com). */
   web3formsAccessKey: '',
+  /** Si Web3Forms est vide : activer une fois FormSubmit via le lien reçu par e-mail. */
+  formsubmitEmail: 'bulletonsite@gmail.com',
 };
 
-/** Statistiques Plausible, activer après création du site sur plausible.io */
+/** Statistiques Plausible (bulletonsite.com) — mesure d'audience respectueuse, sans cookies publicitaires. */
 export const analytics = {
   enabled: true,
   domain: 'bulletonsite.com',
@@ -83,6 +87,7 @@ export const analytics = {
 export const nav = [
   { id: 'services', label: 'Services' },
   { id: 'projets', label: 'Réalisations' },
+  { id: 'process', label: 'Méthode' },
   { id: 'tarifs', label: 'Tarifs' },
   { id: 'faq', label: 'FAQ' },
   { id: 'contact', label: 'Contact' },
@@ -99,7 +104,7 @@ export const hero = {
   ctaSecondary: 'Voir nos réalisations',
   stats: [
     { value: '4', suffix: '+', label: 'sites livrés' },
-    { value: '450', suffix: '€', label: 'dès · sur devis' },
+    { value: '500', suffix: '€', label: 'vitrine dès · sur devis' },
     { value: '1–2', suffix: ' sem.', label: 'de création' },
     { value: '2–3', suffix: ' jours', label: 'premier prototype' },
   ],
@@ -112,31 +117,40 @@ export const sectors = [
   'Professions libérales',
 ];
 
+export const servicesIntro = {
+  subtitle: 'Sur mesure, sans modèle préfabriqué — communication, identité et développement réunis.',
+};
+
 export const services = [
   {
-    icon: '✓',
-    title: 'Identité visuelle',
-    text: 'Logo, couleurs, typographie : une image claire et cohérente que vos clients reconnaissent tout de suite.',
+    label: 'Équipe',
+    title: 'Trois métiers complémentaires',
+    text: 'Audrey écoute votre besoin, Niyazi conçoit l\'identité, Hugo développe et met en ligne. Un interlocuteur clair à chaque étape.',
   },
   {
-    icon: '✓',
-    title: 'Site qui rassure',
-    text: 'Présentation claire de votre activité, photos, tarifs et contact, vos clients comprennent tout en 30 secondes.',
+    label: 'Sur mesure',
+    title: 'Vitrine, dynamique ou outil métier',
+    text: 'Site vitrine, catalogue évolutif ou application terrain (PWA, tableaux de bord…) : nous créons ce dont vous avez besoin, pas un thème générique.',
   },
   {
-    icon: '✓',
-    title: 'Demandes & réservations',
-    text: 'Formulaires simples : chaque demande arrive directement dans votre boîte mail, sans plateforme compliquée.',
+    label: 'Option',
+    title: 'Identité visuelle à part',
+    text: 'Logo et charte en option ou en amont du site. Vous avez déjà un logo ? Nous l\'harmonisons sans refaire toute une identité.',
   },
   {
-    icon: '✓',
-    title: 'Galerie de vos réalisations',
-    text: 'Chantiers, chambres, produits : montrez votre savoir-faire et donnez envie de vous contacter.',
+    label: 'Pratique',
+    title: 'Contact & réservations par e-mail',
+    text: 'Demandes de devis, messages ou nuitées : chaque formulaire arrive dans votre boîte mail, sans plateforme intermédiaire.',
   },
   {
-    icon: '✓',
-    title: 'Visible sur Google',
-    text: 'Structure et contenus pensés pour que l\'on vous trouve quand on cherche votre métier près de chez vous.',
+    label: 'Rythme',
+    title: 'Prototype en 2–3 jours',
+    text: 'Une première maquette rapidement, puis 1 à 2 semaines pour la version finale selon le projet et vos retours.',
+  },
+  {
+    label: 'Qualité',
+    title: 'Mobile, léger & visible',
+    text: 'Site rapide sur téléphone, code propre et bases SEO pour être trouvé quand on cherche votre métier près de chez vous.',
   },
 ];
 
@@ -149,10 +163,10 @@ export const projects = [
     url: 'https://www.lamaisondela.com/',
     image: './assets/screenshots/maison-ela-accueil.png',
     description:
-      'Site vitrine pour une chambre d\'hôtes : présentation du lieu, séjours thématiques, galerie et formulaire de réservation par e-mail.',
+      'Site vitrine pour une chambre d\'hôtes : identité visuelle créée avec nous, présentation du lieu, séjours thématiques et gestion des réservations par e-mail.',
     outcome: 'Les voyageurs réservent en direct, sans commission intermédiaire.',
-    results: ['Livré en 2 semaines', 'Réservations par e-mail', 'Site multilingue'],
-    tags: ['Vitrine', 'Réservation', 'Multilingue'],
+    results: ['Identité visuelle', 'Réservations par e-mail', 'Site multilingue'],
+    tags: ['Vitrine', 'Identité', 'Réservation'],
   },
   {
     id: 'quai-des-reves',
@@ -162,7 +176,7 @@ export const projects = [
     url: 'https://quai-des-reves.vercel.app/',
     image: './assets/screenshots/quai-accueil.png',
     description:
-      'Histoire de l\'ancienne gare, chambres, carte du GR37, et un formulaire pour demander une nuitée en direct.',
+      'Vitrine simple pour une maison d\'hôtes : identité déjà en place, histoire du lieu, chambres et formulaire pour demander une nuitée.',
     outcome: 'Une vitrine chaleureuse qui donne envie de réserver sur place.',
     results: ['Prototype en 3 jours', 'Formulaire nuitées intégré', '100 % à distance'],
     tags: ['Storytelling', 'Réservation'],
@@ -175,7 +189,7 @@ export const projects = [
     url: 'https://www.etcbc-charpente.com/',
     image: './assets/screenshots/etcbc-accueil.png',
     description:
-      'Site vitrine pour l\'entreprise : métiers, zone d\'intervention, galerie de chantiers filtrable et demande de devis.',
+      'Vitrine simple pour l\'entreprise : logo et charte déjà existants, métiers, zone d\'intervention, galerie de chantiers et demande de devis.',
     outcome: 'Des demandes de devis qualifiées, reçues par e-mail.',
     results: ['Galerie chantiers filtrable', 'Demandes de devis ciblées', 'Mobile optimisé'],
     tags: ['Vitrine', 'Galerie', 'Devis'],
@@ -189,6 +203,7 @@ export const projectsCustom = [
     name: 'SQCDP',
     sector: 'Pilotage industriel · PWA',
     url: 'https://sqcdp.vercel.app/',
+    embed: 'screenshot',
     image: null,
     description:
       'Application web PWA : tableaux de bord SQCDP animés, PDCA, roulette de réunion et mode hors-ligne pour l\'atelier.',
@@ -221,6 +236,7 @@ export const testimonials = [
 
 export const process = {
   title: 'Simple, rapide, sans surprise',
+  subtitle: 'Du premier échange à la mise en ligne : trois étapes, trois interlocuteurs.',
   steps: [
     {
       num: '01',
@@ -237,60 +253,151 @@ export const process = {
     {
       num: '03',
       title: 'Développement & mise en ligne',
-      text: 'Intégration, tests mobile, publication et prise en main. Paiement en 2 fois : acompte, solde à la livraison.',
+      text: 'Intégration, tests mobile, publication et prise en main. Paiement en 2 fois : 30 % à la commande, 70 % à la mise en ligne.',
       who: 'Hugo · Développement web',
     },
   ],
 };
 
 export const pricing = {
-  title: 'Des tarifs transparents, toujours sur devis',
-  from: 450,
-  fromNote: 'Montant indicatif · devis personnalisé gratuit',
-  disclaimer:
-    'Les fourchettes et exemples ci-dessous vous aident à vous projeter. Chaque projet fait l\'objet d\'un devis gratuit, détaillé et sans engagement : seul ce document fait foi avant toute commande.',
-  note: 'Repères indicatifs · Devis gratuit sous 24 h · Sans engagement',
-  hosting: {
-    price: 20,
-    label: '20 €/mois',
-    heading: "d'entretien et maintenance",
-    detail: 'Hébergement, HTTPS, surveillance et mises à jour de sécurité, nom de domaine en option (~12 €/an) · montant confirmé sur devis',
+  title: 'Des offres claires, toujours sur devis',
+  intro: {
+    text:
+      'Devis gratuit sous 48 h · fourchettes indicatives · sans engagement. Chaque site est conçu sur mesure (pas de modèles préfabriqués) ; l\'identité visuelle est une prestation à part. Seul votre devis personnalisé fait foi avant toute commande.',
+    fromLabel: 'Vitrine sur mesure · à partir de',
+    from: 500,
   },
-  example: {
-    label: 'Exemple indicatif : chambre d\'hôtes',
-    range: '~690 €',
-    rangeNote: 'sur devis',
-    detail: 'Présentation du lieu, galerie photos, formulaire de réservation et version mobile optimisée. Montant repère : le devis reprendra chaque poste après échange sur votre projet.',
-  },
-  tiers: [
+  offers: [
     {
-      label: 'Site sur mesure',
-      range: '450 – 900 €',
-      rangeNote: 'Fourchette indicative · devis gratuit',
+      label: 'Site vitrine sur mesure',
+      subtitle: 'Votre carte de visite en ligne, rapide et crédible',
+      range: '500 – 1 500 €',
+      rangeNote: 'Fourchette indicative · sur devis',
+      description:
+        'Présence professionnelle pour rassurer vos prospects et présenter votre savoir-faire. Site de 3 à 5 pages, design fluide, code léger, structure pensée pour Google.',
       features: [
-        'Présentation, galerie & pages',
-        'Formulaire de contact ou réservation',
-        'Mobile & visibilité Google',
+        '3 à 5 pages + mentions légales',
+        'Formulaire contact ou demande par e-mail',
+        'Mobile & bases SEO',
+        'Mise en ligne · 1 à 2 tours de retours',
       ],
       highlight: true,
       badge: 'Le plus demandé',
     },
     {
-      label: 'Site dynamique',
-      range: '1 000 € et +',
-      rangeNote: 'Sur devis selon cahier des charges',
+      label: 'Site dynamique & catalogue',
+      subtitle: 'Publiez votre contenu en autonomie',
+      range: '2 000 – 3 500 €',
+      rangeNote: 'Sur devis · cahier des charges',
+      description:
+        'Vous mettez à jour chantiers, réalisations ou actualités sans repasser par nous. Espace d\'administration privé, simple et sécurisé.',
       features: [
-        'Réservations ou espaces clients',
-        'Évolutions & mises à jour',
-        'Fonctionnalités sur mesure',
+        'Back-office intuitif',
+        'Blog, catalogue ou portfolio évolutif',
+        'Plusieurs contributeurs possibles',
+        'Pour les publications fréquentes en autonomie',
       ],
+    },
+    {
+      label: 'Application web & outil métier',
+      subtitle: 'Automatiser votre quotidien',
+      range: 'À partir de 4 000 €',
+      rangeNote: 'Sur devis · projet sur mesure',
+      description:
+        'Espace client, devis automatiques, réservation avancée, tableau de bord interne ou PWA terrain : une solution digitale conçue pour votre métier.',
+      features: [
+        'Cahier des charges dédié',
+        'Développement sur mesure',
+        'Outils métier & automatisations',
+        'Ex. SQCDP · pilotage atelier',
+      ],
+    },
+  ],
+  identity: {
+    label: 'Identité visuelle',
+    subtitle: 'Logo, couleurs et charte — prestation séparée',
+    range: '250 – 800 €',
+    rangeNote: 'Sur devis · en option ou en amont du site',
+    description:
+      'Prestation distincte du développement web. Commandable seule, avant le site, ou en complément. Logo déjà prêt ? Nous l\'harmonisons dans le site sans refaire une identité complète.',
+    items: [
+      { label: 'Harmonisation (logo fourni)', range: '160 – 250 €' },
+      { label: 'Création de logo', range: '250 – 450 €' },
+      { label: 'Charte légère (logo + palette web)', range: '450 – 650 €' },
+    ],
+    contact: 'Niyazi · Identité visuelle',
+  },
+  vitrineAnchors: {
+    title: 'Repères site vitrine',
+    hint: 'Hors identité visuelle · montants indicatifs',
+    rows: [
+      { profile: 'Essentiel', content: '3–4 pages, logo fourni, contact', range: '500 – 700 €' },
+      { profile: 'Complet', content: 'Galerie, réservation e-mail (gîte, artisan)', range: '900 – 1 200 €' },
+      { profile: 'Renforcé', content: 'Multilingue, contenu structuré, SEO local', range: '1 200 – 1 500 €' },
+    ],
+  },
+  examples: {
+    title: 'Exemples de nos réalisations',
+    items: [
+      { name: 'Quai des Rêves', type: 'Vitrine simple', range: '~650 – 900 €' },
+      { name: 'ETCBC Charpente', type: 'Vitrine simple', range: '~800 – 1 100 €' },
+      { name: "La Maison d'Ela", type: 'Vitrine + réservations + identité visuelle', range: '~1 100 – 1 500 €' },
+      { name: 'SQCDP', type: 'Outil métier · PWA', range: '4 000 €+' },
+    ],
+  },
+  whyUs: {
+    title: 'Pourquoi Bulle ton site',
+    points: [
+      {
+        title: 'Sur mesure',
+        text: 'Pas de thème générique : chaque site est pensé pour votre métier et vos objectifs.',
+      },
+      {
+        title: 'Rapide & fiable',
+        text: 'Sites légers, adaptés au mobile, architecture simple et peu exposée aux failles des CMS non maintenus.',
+      },
+      {
+        title: 'Vous restez propriétaire',
+        text: 'Le site vous appartient ; code et contenus remis à la livraison (détail dans le devis).',
+      },
+    ],
+  },
+  hostingIntro: {
+    title: 'Après la mise en ligne : vous choisissez',
+    text: 'Comme pour une maison : l\'adresse (nom de domaine) et le terrain (hébergement). Nous expliquons tout ; vous choisissez votre niveau d\'accompagnement.',
+  },
+  hosting: [
+    {
+      label: 'Autonomie totale',
+      price: 'Pas d\'abonnement',
+      priceNote: 'mensuel chez nous',
+      forWho:
+        'Vous souscrivez l\'hébergement et le domaine à votre nom (~50 – 80 € / an chez le fournisseur). Chez Bulle ton site, aucun forfait mensuel : nous installons, mettons en ligne et vous remettons les accès.',
+      features: [
+        'Guidance pour choisir et configurer l\'hébergement',
+        'Installation et mise en ligne initiale',
+        'Remise des accès (site, domaine, hébergement)',
+        'Modification ou évolution ensuite = devis ponctuel',
+      ],
+    },
+    {
+      label: 'Pack tranquillité',
+      price: '30 – 50 € / mois',
+      priceNote: 'confirmé sur devis',
+      forWho: 'Vous déléguez la technique et nous écrivez pour les petites mises à jour.',
+      features: [
+        'Sérénité ~30 € : hébergement, HTTPS, sauvegardes, surveillance, domaine',
+        'Actif ~50 € : tout Sérénité + jusqu\'à 30–45 min de modifs texte/photo par mois',
+        'Nouvelle page ou fonctionnalité = devis séparé',
+      ],
+      highlight: true,
     },
   ],
   footnotes: [
     'Toujours sur devis : les montants affichés ne constituent pas une offre ferme',
-    'Devis gratuit · Sans engagement · Pas de frais cachés',
-    'Entretien & maintenance : 20 €/mois (hébergement et HTTPS inclus, confirmé sur devis)',
-    'Paiement en 2 fois : acompte, solde à la livraison',
+    'Identité visuelle facturée à part si demandée',
+    'Devis gratuit · Sans engagement · Paiement 30 % à la commande, 70 % à la mise en ligne',
+    'Délais indicatifs : prototype en 2–3 jours, livraison en 1 à 2 semaines',
   ],
 };
 
@@ -348,24 +455,28 @@ export const faq = [
     a: 'Non. Les montants et fourchettes servent de repères pour vous orienter. Avant tout engagement, nous établissons un devis gratuit, détaillé et adapté à votre projet : c\'est lui qui fait foi. Rien n\'est facturé sans votre accord sur ce devis.',
   },
   {
+    q: 'L\'identité visuelle est-elle incluse dans le site vitrine ?',
+    a: 'Non par défaut. Vous pouvez arriver avec votre logo, commander une création à part (250 – 800 € selon le scope), ou combiner site et identité sur un seul devis. L\'harmonisation d\'un logo fourni peut être intégrée au projet web sans refaire une charte complète.',
+  },
+  {
+    q: 'Ai-je besoin d\'un site dynamique pour mettre à jour mon site ?',
+    a: 'Pas forcément. Pour beaucoup d\'artisans et de gîtes, un site vitrine suffit : vous nous envoyez vos changements (pack tranquillité ou devis ponctuel). Le site dynamique est pertinent si vous publiez souvent en autonomie via un back-office.',
+  },
+  {
     q: 'Combien de temps pour avoir mon site ?',
     a: 'Comptez 2–3 jours pour un premier prototype, puis 1 à 2 semaines pour la version finale selon le nombre de pages et vos retours.',
   },
   {
     q: 'Comment modifier mon site après la livraison ?',
-    a: 'Vous nous contactez : nous appliquons les changements pour vous (textes, photos, horaires…). Les premiers petits ajustements sont en général offerts ; au-delà, nous vous indiquons un devis avant toute intervention.',
+    a: 'Deux options : l\'autonomie totale (hébergement à votre nom, modifications sur devis ponctuel) ou le pack tranquillité (30 – 50 €/mois, modifications texte/photo incluses selon formule).',
   },
   {
-    q: 'Que comprend l\'entretien et la maintenance ?',
-    a: '20 €/mois pour garder votre site en ligne, à jour et sécurisé : hébergement, certificat HTTPS (cadenas), surveillance technique et mises à jour de sécurité. Le nom de domaine (votrenom.fr) est en option, environ 10–15 €/an. Tout est détaillé dans votre devis, sans frais cachés.',
-  },
-  {
-    q: 'Que comprennent les 20 €/mois ?',
-    a: 'L\'hébergement, le HTTPS, la surveillance du site et l\'entretien technique (sécurité, disponibilité). Pour les modifications de contenu (textes, photos…), vous nous contactez. Les petits ajustements sont en général inclus, les changements plus importants font l\'objet d\'un devis.',
+    q: 'Que comprend le pack tranquillité ?',
+    a: 'À partir d\'environ 30 €/mois : hébergement professionnel, HTTPS, sauvegardes, surveillance et gestion du nom de domaine. Vers 50 €/mois : en plus, jusqu\'à 30–45 minutes de modifications texte ou photo par mois sur simple message. Le détail est confirmé sur devis.',
   },
   {
     q: 'Le nom de domaine est-il inclus ?',
-    a: 'Non, il n\'est pas inclus dans les 20 €/mois. Nous pouvons l\'acheter et le configurer pour vous. Comptez environ 10–15 €/an selon l\'extension (.fr, .com…), sans marge cachée.',
+    a: 'En pack tranquillité, nous pouvons le gérer pour vous (inclus selon devis). En autonomie totale, vous le souscrivez à votre nom : comptez environ 50 – 80 €/an côté fournisseur pour domaine et hébergement, sans marge cachée de notre côté.',
   },
   {
     q: 'Travaillez-vous avec mon métier ?',
@@ -377,13 +488,13 @@ export const faq = [
   },
   {
     q: 'Comment se passe le paiement ?',
-    a: 'En deux fois : un acompte au lancement, le solde à la livraison. Devis gratuit et sans engagement avant toute décision.',
+    a: '30 % à la commande, 70 % à la mise en ligne. Devis gratuit et sans engagement avant toute décision.',
   },
 ];
 
 export const promo = {
   title: 'Prêt à lancer votre site ?',
-  text: 'Décrivez votre projet via le formulaire : nous vous répondons sous 24 h avec un devis gratuit et des conseils adaptés.',
+  text: 'Décrivez votre projet via le formulaire : nous vous répondons sous 48 h avec un devis gratuit et des conseils adaptés.',
   cta: 'Demander mon devis gratuit',
 };
 
@@ -391,6 +502,8 @@ export const organization = {
   parent: 'DARIOH',
   brand: 'Bulle ton site',
   footerLine: 'Bulle ton site',
+  legalName: 'DARIOH',
+  legalContact: 'Hugo Davion',
 };
 
 export const team = [
@@ -416,9 +529,8 @@ export const team = [
 
 export const about = {
   title: "L'équipe",
-  text: 'Audrey (communication), Niyazi (identité visuelle & graphisme) et Hugo (développement) : trois métiers complémentaires pour un site cohérent de A à Z.',
-  blurb:
-    'Pas de sous-traitance opaque ni d\'interlocuteurs multiples. Vous savez qui fait quoi à chaque étape.',
+  text: 'Audrey (communication), Niyazi (identité visuelle) et Hugo (développement) : trois métiers complémentaires pour un site cohérent de A\u00a0à\u00a0Z.',
+  blurb: 'Pas de sous-traitance opaque : un interlocuteur par étape, vous savez qui fait quoi.',
 };
 
 export const legal = {

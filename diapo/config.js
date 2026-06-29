@@ -17,7 +17,7 @@ export const contact = {
   email: 'bulletonsite@gmail.com',
   phone: '06 13 80 95 65',
   zone: 'Partout en France',
-  responseTime: 'Réponse sous 24 h',
+  responseTime: 'Réponse sous 48 h',
 };
 
 export const team = [
@@ -94,13 +94,13 @@ export const processDelivery = {
     },
     {
       title: 'Développement & mise en ligne',
-      text: 'Intégration, tests mobile, publication. Paiement en 2 fois.',
+      text: 'Intégration, tests mobile, publication. Paiement 30 % à la commande, 70 % à la mise en ligne.',
       who: 'Hugo · Développement web',
     },
   ],
   firstPreview: '2–3 jours',
   total: '1 à 2 semaines',
-  footnote: 'Devis gratuit · Sans engagement · Paiement en 2 fois.',
+  footnote: 'Devis gratuit · Sans engagement · Paiement 30 % à la commande, 70 % à la mise en ligne',
 };
 
 export const testimonial = {
@@ -111,22 +111,23 @@ export const testimonial = {
 };
 
 export const guarantees = [
-  'Devis gratuit sous 24 h',
-  'Paiement en 2 fois',
-  'Entretien & maintenance 20 €/mois',
+  'Devis gratuit sous 48 h',
+  'Paiement 30 % / 70 %',
+  'Pack tranquillité · 30 – 50 €/mois',
   'Équipe dédiée du brief à la livraison',
 ];
 
 export const pricing = {
   hook: 'Tarifs transparents',
-  tagline: 'Toujours sur devis · gratuit sous 24 h',
-  from: 450,
+  tagline: 'Toujours sur devis · gratuit sous 48 h',
+  from: 500,
   tiers: [
-    { label: 'Site sur mesure', range: '450 – 900 €', highlight: true },
-    { label: 'Site dynamique', range: '1 000 €+' },
+    { label: 'Site vitrine', range: '500 – 1 500 €', highlight: true },
+    { label: 'Site dynamique', range: '2 000 – 3 500 €' },
+    { label: 'Outil métier', range: '4 000 €+' },
   ],
-  example: 'Ex. chambre d\'hôtes · ~690 €',
-  maintenance: '20 €/mois · entretien & hébergement',
+  example: 'Ex. chambre d\'hôtes · ~900 – 1 200 €',
+  maintenance: 'Pack tranquillité · 30 – 50 €/mois',
 };
 
 const projectEla = {
@@ -140,7 +141,7 @@ const projectEla = {
     { tag: 'Réservation', image: `${assets}screenshots/maison-ela-reservation.png`, url: 'https://www.lamaisondela.com/#reservation' },
   ],
   betweenText:
-    'Site vitrine : séjours thématiques, galerie et réservation par e-mail. Les voyageurs réservent en direct, sans commission.',
+    'Identité visuelle créée avec nous, vitrine multilingue et réservations par e-mail. Les voyageurs réservent en direct, sans commission.',
 };
 
 const projectQuai = {
@@ -154,7 +155,7 @@ const projectQuai = {
     { tag: 'Réservation', image: `${assets}screenshots/quai-reservation.png`, url: 'https://quai-des-reves.vercel.app/#reserver' },
   ],
   betweenText:
-    'Histoire de l\'ancienne gare, chambres et GR37. Formulaire de nuitée intégré, prototype livré en 3 jours.',
+    'Vitrine simple : identité déjà en place, histoire du lieu et formulaire de nuitée. Prototype livré en 3 jours.',
 };
 
 const projectEtcbc = {
@@ -168,7 +169,7 @@ const projectEtcbc = {
     { tag: 'Galerie chantiers', image: `${assets}screenshots/etcbc-realisations.png`, url: 'https://www.etcbc-charpente.com/realisations' },
   ],
   betweenText:
-    'Métiers, zone d\'intervention et galerie filtrable. Des demandes de devis qualifiées reçues par e-mail.',
+    'Vitrine simple : logo et charte déjà existants, galerie filtrable et demandes de devis par e-mail.',
 };
 
 const projectSqcdp = {
@@ -190,7 +191,7 @@ export const slides = [
     duration: 4,
     line1: 'Votre site internet,',
     line2: 'conçu en équipe.',
-    sub: 'Communication, identité visuelle & développement · devis gratuit sous 24 h.',
+    sub: 'Communication, identité visuelle & développement · devis gratuit sous 48 h.',
     caption: 'Artisans · Gîtes · Commerces · Outils métier',
   },
   {
@@ -218,12 +219,12 @@ export const slides = [
   { type: 'processDelivery', duration: 5.5 },
   { type: 'testimonial', duration: 4.5 },
   { type: 'guarantees', duration: 4.5 },
-  { type: 'pricing', duration: 5, caption: 'Dès 450 € · Sur devis' },
+  { type: 'pricing', duration: 5, caption: 'Dès 500 € · Sur devis' },
   {
     type: 'cta',
     duration: 6,
     title: 'Un devis gratuit',
-    titleEm: 'sous 24 h',
+    titleEm: 'sous 48 h',
     sub: 'Devis gratuit · Sans engagement',
     caption: 'bulletonsite.com',
   },
@@ -236,7 +237,7 @@ export const slidesShort = [
     duration: 3.5,
     line1: 'Votre site internet,',
     line2: 'conçu en équipe.',
-    sub: 'Sur mesure · Devis gratuit sous 24 h.',
+    sub: 'Sur mesure · Devis gratuit sous 48 h.',
     caption: 'Bulle ton site',
   },
   {
@@ -253,12 +254,12 @@ export const slidesShort = [
   { type: 'sectorsZone', duration: 3.5 },
   { ...projectQuai, duration: 5 },
   { ...projectSqcdp, duration: 4.5 },
-  { type: 'pricing', duration: 4.5, caption: 'Dès 450 € · Sur devis' },
+  { type: 'pricing', duration: 4.5, caption: 'Dès 500 € · Sur devis' },
   {
     type: 'cta',
     duration: 5,
     title: 'Un devis gratuit',
-    titleEm: 'sous 24 h',
+    titleEm: 'sous 48 h',
     sub: 'Sans engagement',
     caption: 'bulletonsite.com',
   },

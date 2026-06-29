@@ -17,7 +17,9 @@ QUI FAIT QUOI
 
 EN-TÊTE À DÉPLOYER SUR LES SITES CLIENTS
 ----------------------------------------
-frame-ancestors 'self' https://bulletonsite.vercel.app https://bulletonsite.com https://www.bulletonsite.com http://localhost:3000
+frame-ancestors 'self' https://*.vercel.app https://bulletonsite.com https://www.bulletonsite.com https://dariohd.github.io http://localhost:3000 http://localhost:5174
+
+(Valeur canonique : embed-templates/frame-ancestors.json)
 
 Vercel : copier embed-templates/vercel.json à la racine du projet client.
 Netlify : copier embed-templates/netlify-headers vers public/_headers
@@ -29,8 +31,11 @@ FICHIERS PAR PROJET
   maison-ela      → lamaisondela.com
   quai-des-reves  → quai-des-reves.vercel.app
   etcbc           → etcbc-charpente.com
-  sqcdp           → sqcdp.vercel.app
+  sqcdp           → sqcdp.vercel.app (aperçu capture sur le portfolio)
 
 Prompts prêts à coller : voir PROMPTS.md dans ce dossier.
 
 Après déploiement du client : vider le cache navigateur ou attendre 1–2 min, puis recharger bulletonsite.com#projets.
+
+Synchroniser la CSP depuis config.js :
+  npm run sync:embed-csp

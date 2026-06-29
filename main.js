@@ -4,6 +4,7 @@ import {
   nav,
   hero,
   sectors,
+  servicesIntro,
   services,
   projects,
   projectsCustom,
@@ -23,7 +24,7 @@ import {
   form,
   analytics,
 } from './config.js';
-import { fitMiniBrowser, observeMiniBrowser, observeShowcaseBrowser, fitShowcaseBrowser, resolveAsset } from './mini-browser.js';
+import { fitMiniBrowser, observeMiniBrowser, observeShowcaseBrowser, fitShowcaseBrowser, resolveAsset, fallbackScreenshotUrl, watchMiniBrowserEmbed } from './mini-browser.js';
 import { initBubbles } from './bubbles.js';
 
 function setText(sel, key, obj) {
@@ -61,11 +62,18 @@ function initSeo() {
   const ogUrl = document.querySelector('meta[property="og:url"]');
   if (ogUrl) ogUrl.content = `${siteUrl}/`;
 
-  const ogImage = document.querySelector('meta[property="og:image"]');
-  if (ogImage) {
-    const imgPath = seo.ogImage.replace(/^\.\//, '');
-    ogImage.content = `${siteUrl}/${imgPath}`;
-  }
+  const imgPath = seo.ogImage.replace(/^\.\//, '');
+  const imageUrl = `${siteUrl}/${imgPath}`;
+
+  const ogImage = document.getElementById('og-image') || document.querySelector('meta[property="og:image"]');
+  if (ogImage) ogImage.content = imageUrl;
+
+  const twitterTitle = document.getElementById('twitter-title');
+  const twitterDesc = document.getElementById('twitter-desc');
+  const twitterImage = document.getElementById('twitter-image');
+  if (twitterTitle) twitterTitle.content = seo.title;
+  if (twitterDesc) twitterDesc.content = seo.description;
+  if (twitterImage) twitterImage.content = imageUrl;
 
   const schemaEl = document.getElementById('schema-org');
   if (schemaEl) {
@@ -74,10 +82,15 @@ function initSeo() {
       '@type': 'Organization',
       name: organization.brand,
       url: siteUrl,
+      logo: `${siteUrl}/assets/favicon.svg`,
       description: seo.description,
       email: contact.email,
       telephone: contact.phoneTel,
       areaServed: 'FR',
+      parentOrganization: {
+        '@type': 'Organization',
+        name: organization.legalName || organization.parent,
+      },
       sameAs: [],
     });
   }
@@ -173,7 +186,8 @@ function initContactForm() {
         const json = await res.json();
         ok = json.success === true;
       } else {
-        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(contact.email)}`, {
+        const targetEmail = form.formsubmitEmail || contact.email;
+        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(targetEmail)}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify({
@@ -186,9 +200,11 @@ function initContactForm() {
             _subject: payload.subject,
             _replyto: email,
             _captcha: 'false',
+            _template: 'table',
           }),
         });
-        ok = res.ok;
+        const json = await res.json().catch(() => ({}));
+        ok = res.ok && json.success !== 'false';
       }
 
       if (!ok) throw new Error('submit failed');
@@ -196,7 +212,7 @@ function initContactForm() {
       formEl.reset();
       if (status) {
         status.textContent =
-          'Message envoyé. Nous vous répondons sous 24 h. Pensez à vérifier vos spams.';
+          'Message envoyé. Nous vous répondons sous 48 h. Pensez à vérifier vos spams.';
       }
     } catch {
       if (status) {
@@ -264,6 +280,14 @@ function initNav() {
   navEl.querySelectorAll('a').forEach((a) => {
     a.addEventListener('click', () => navEl.classList.remove('is-open'));
   });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navEl.classList.contains('is-open')) {
+      navEl.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.focus();
+    }
+  });
 }
 
 function initMarquee() {
@@ -292,13 +316,16 @@ function initServiceSpotlight() {
 }
 
 function initServices() {
+  const sub = document.getElementById('services-sub');
+  if (sub && servicesIntro?.subtitle) sub.textContent = servicesIntro.subtitle;
+
   const grid = document.getElementById('services-grid');
   if (!grid) return;
   grid.innerHTML = services
     .map(
       (s) => `
     <article class="service-card reveal">
-      <div class="service-card__icon">${s.icon}</div>
+      ${s.label ? `<p class="service-card__label">${s.label}</p>` : ''}
       <h3>${s.title}</h3>
       <p>${s.text}</p>
     </article>`,
@@ -316,24 +343,30 @@ function domainFromUrl(url) {
 
 function miniBrowserHtml(p) {
   const domain = domainFromUrl(p.url);
-  const imgFallback = p.image ? resolveAsset(p.image) : '';
+  const screenshotOnly = p.embed === 'screenshot';
+  const imgFallback = p.image ? resolveAsset(p.image) : fallbackScreenshotUrl(p.url);
+  const modeClass = screenshotOnly ? ' is-screenshot' : '';
 
   return `
-    <div class="mini-browser mini-browser--16x9" data-project-url="${p.url}">
+    <div class="mini-browser mini-browser--16x9${modeClass}" data-project-url="${p.url}" data-embed-mode="${screenshotOnly ? 'screenshot' : 'iframe'}">
       <div class="mini-browser__bar" aria-hidden="true">
         <span></span><span></span><span></span>
         <span class="mini-browser__url">${domain}</span>
       </div>
       <div class="mini-browser__viewport">
         <div class="mini-browser__scale">
-          <iframe
+          ${
+            screenshotOnly
+              ? ''
+              : `<iframe
             class="mini-browser__iframe"
             data-src="${p.url}"
             title="Aperçu ${p.name}"
             loading="lazy"
             sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-          ></iframe>
-          ${imgFallback ? `<img class="mini-browser__fallback-img" src="${imgFallback}" alt="Aperçu ${p.name}" hidden />` : ''}
+          ></iframe>`
+          }
+          <img class="mini-browser__fallback-img" src="${imgFallback}" alt="Aperçu ${p.name}"${screenshotOnly ? '' : ' hidden'} />
         </div>
       </div>
       <p class="mini-browser__fallback">Aperçu indisponible, <a href="${p.url}" target="_blank" rel="noopener">ouvrir ${domain}</a></p>
@@ -344,6 +377,7 @@ function loadBrowserIframe(browser) {
   const iframe = browser?.querySelector('.mini-browser__iframe');
   if (!iframe?.dataset.src || iframe.src) return;
   iframe.src = iframe.dataset.src;
+  watchMiniBrowserEmbed(browser);
 }
 
 function initLiveBrowser(browser) {
@@ -356,6 +390,9 @@ function initLiveBrowser(browser) {
     browser.querySelector('.mini-browser__iframe')?.addEventListener('load', () => {
       fitShowcaseBrowser(browser);
     });
+    if (browser.dataset.embedMode === 'screenshot') {
+      requestAnimationFrame(() => fitShowcaseBrowser(browser));
+    }
     return;
   }
 
@@ -422,6 +459,13 @@ function initShowcase(list = projects) {
 
   track.innerHTML = slides.map((s, i) => panelHtml(s.p, s.real, i, s.clone)).join('');
 
+  const statusEl = document.createElement('p');
+  statusEl.id = 'showcase-status';
+  statusEl.className = 'visually-hidden';
+  statusEl.setAttribute('aria-live', 'polite');
+  statusEl.setAttribute('aria-atomic', 'true');
+  track.insertAdjacentElement('afterend', statusEl);
+
   track.querySelectorAll('.mini-browser').forEach((browser) => initLiveBrowser(browser));
 
   const panels = () => [...track.querySelectorAll('.showcase__panel')];
@@ -470,6 +514,11 @@ function initShowcase(list = projects) {
     if (idx !== lastFocused) {
       lastFocused = idx;
       activatePanel(focused);
+      const realIndex = Number.parseInt(focused.dataset.realIndex ?? '0', 10);
+      const project = list[realIndex];
+      if (project && statusEl) {
+        statusEl.textContent = `${project.name} — ${realIndex + 1} sur ${n}`;
+      }
     }
   };
 
@@ -620,12 +669,13 @@ function initTestimonials() {
   if (!grid) return;
   grid.innerHTML = testimonials
     .map(
-      (t) => `
-    <blockquote class="testimonial-card reveal">
-      <p class="testimonial-card__quote">« ${t.quote} »</p>
-      <footer>
-        <cite class="testimonial-card__author">${t.author}</cite>
-        <span class="testimonial-card__role">${t.role}</span>
+      (t, i) => `
+    <blockquote class="quote-bubble reveal quote-bubble--${i + 1}">
+      <span class="quote-bubble__mark" aria-hidden="true">«</span>
+      <p class="quote-bubble__text">${t.quote}</p>
+      <footer class="quote-bubble__foot">
+        <cite class="quote-bubble__author">${t.author}</cite>
+        <span class="quote-bubble__role">${t.role}</span>
       </footer>
     </blockquote>`,
     )
@@ -638,12 +688,17 @@ function initProcess() {
   if (!timeline) return;
   timeline.innerHTML = process.steps
     .map(
-      (s) => `
-    <li class="timeline__item reveal">
-      <div class="timeline__num">${s.num}</div>
-      <p class="timeline__who">${s.who}</p>
-      <h3>${s.title}</h3>
-      <p>${s.text}</p>
+      (s, i) => `
+    <li class="process-path__step reveal process-path__step--${i + 1}">
+      <div class="process-path__track" aria-hidden="true">
+        <span class="process-path__node">${s.num}</span>
+        ${i < process.steps.length - 1 ? '<span class="process-path__line"></span>' : ''}
+      </div>
+      <div class="process-path__body">
+        <p class="process-path__who">${s.who}</p>
+        <h3 class="process-path__title">${s.title}</h3>
+        <p class="process-path__text">${s.text}</p>
+      </div>
     </li>`,
     )
     .join('');
@@ -704,39 +759,129 @@ function initComparison() {
 
 function initPricing() {
   setText('[data-pricing]', 'pricing', pricing);
-  const fromEl = document.getElementById('price-from');
-  if (fromEl) fromEl.textContent = `${pricing.from} €`;
 
-  const fromNoteEl = document.getElementById('price-from-note');
-  if (fromNoteEl && pricing.fromNote) fromNoteEl.textContent = pricing.fromNote;
+  const introEl = document.getElementById('pricing-intro');
+  if (introEl && pricing.intro) {
+    introEl.innerHTML = `
+      <p class="pricing-intro__text">${pricing.intro.text}</p>
+      <p class="pricing-intro__from">
+        <span>${pricing.intro.fromLabel}</span>
+        <strong>${pricing.intro.from} €</strong>
+      </p>`;
+  }
 
-  const disclaimerEl = document.getElementById('pricing-disclaimer');
-  if (disclaimerEl && pricing.disclaimer) disclaimerEl.textContent = pricing.disclaimer;
+  const offersEl = document.getElementById('pricing-offers');
+  if (offersEl && pricing.offers) {
+    offersEl.innerHTML = pricing.offers
+      .map(
+        (o) => `
+      <article class="price-card reveal${o.highlight ? ' price-card--highlight' : ''}">
+        <div class="price-card__top">${o.badge ? `<span class="price-card__badge">${o.badge}</span>` : ''}</div>
+        <h3>${o.label}</h3>
+        ${o.subtitle ? `<p class="price-card__subtitle">${o.subtitle}</p>` : ''}
+        <p class="price-card__range">${o.range}</p>
+        ${o.rangeNote ? `<p class="price-card__devis">${o.rangeNote}</p>` : ''}
+        ${o.description ? `<p class="price-card__desc">${o.description}</p>` : ''}
+        <ul>${o.features.map((f) => `<li>${f}</li>`).join('')}</ul>
+      </article>`,
+      )
+      .join('');
+  }
 
-  const exampleEl = document.getElementById('pricing-example');
-  if (exampleEl && pricing.example) {
-    const rangeNote = pricing.example.rangeNote
-      ? ` <span class="pricing-example__devis">${pricing.example.rangeNote}</span>`
-      : '';
-    exampleEl.innerHTML = `
-      <div class="pricing-example__inner">
-        <span class="pricing-example__label">${pricing.example.label}</span>
-        <strong class="pricing-example__range">${pricing.example.range}${rangeNote}</strong>
-        <p class="pricing-example__detail">${pricing.example.detail}</p>
+  const identityEl = document.getElementById('pricing-identity');
+  if (identityEl && pricing.identity) {
+    const id = pricing.identity;
+    identityEl.innerHTML = `
+      <div class="pricing-block__head">
+        <p class="pricing-block__eyebrow">Prestation séparée</p>
+        <h3 class="pricing-block__title">${id.label}</h3>
+        <p class="pricing-block__sub">${id.subtitle}</p>
+      </div>
+      <p class="price-card__range pricing-block__range">${id.range}</p>
+      <p class="price-card__devis">${id.rangeNote}</p>
+      <p class="pricing-block__text">${id.description}</p>
+      <ul class="pricing-identity-list">
+        ${id.items.map((item) => `<li><span>${item.label}</span><em>${item.range}</em></li>`).join('')}
+      </ul>
+      <p class="pricing-block__meta">${id.contact}</p>`;
+  }
+
+  const anchorsEl = document.getElementById('pricing-anchors');
+  if (anchorsEl && pricing.vitrineAnchors) {
+    const a = pricing.vitrineAnchors;
+    anchorsEl.innerHTML = `
+      <div class="pricing-block__head">
+        <h3 class="pricing-block__title">${a.title}</h3>
+        ${a.hint ? `<p class="pricing-block__sub">${a.hint}</p>` : ''}
+      </div>
+      <div class="pricing-anchors-wrap">
+        <table class="pricing-anchors">
+          <thead>
+            <tr><th>Profil</th><th>Contenu type</th><th>Indication</th></tr>
+          </thead>
+          <tbody>
+            ${a.rows.map((r) => `<tr><th scope="row">${r.profile}</th><td>${r.content}</td><td>${r.range}</td></tr>`).join('')}
+          </tbody>
+        </table>
       </div>`;
   }
 
-  const grid = document.getElementById('pricing-grid');
-  if (grid) {
-    grid.innerHTML = pricing.tiers
+  const examplesEl = document.getElementById('pricing-examples');
+  if (examplesEl && pricing.examples) {
+    examplesEl.innerHTML = `
+      <div class="pricing-block__head">
+        <h3 class="pricing-block__title">${pricing.examples.title}</h3>
+      </div>
+      <ul class="pricing-examples-list">
+        ${pricing.examples.items
+          .map(
+            (e) => `
+          <li>
+            <strong>${e.name}</strong>
+            <span>${e.type}</span>
+            <em>${e.range}</em>
+          </li>`,
+          )
+          .join('')}
+      </ul>`;
+  }
+
+  const whyEl = document.getElementById('pricing-why');
+  if (whyEl && pricing.whyUs) {
+    whyEl.innerHTML = `
+      <h3 class="pricing-block__title">${pricing.whyUs.title}</h3>
+      <div class="pricing-pillars__grid">
+        ${pricing.whyUs.points
+          .map(
+            (p) => `
+          <article class="pricing-pillar">
+            <h4>${p.title}</h4>
+            <p>${p.text}</p>
+          </article>`,
+          )
+          .join('')}
+      </div>`;
+  }
+
+  const hostingIntroEl = document.getElementById('pricing-hosting-intro');
+  if (hostingIntroEl && pricing.hostingIntro) {
+    hostingIntroEl.innerHTML = `
+      <h3 class="pricing-block__title">${pricing.hostingIntro.title}</h3>
+      <p class="pricing-block__text">${pricing.hostingIntro.text}</p>`;
+  }
+
+  const hostingEl = document.getElementById('pricing-hosting');
+  if (hostingEl && pricing.hosting) {
+    hostingEl.innerHTML = pricing.hosting
       .map(
-        (t) => `
-      <article class="price-card reveal${t.highlight ? ' price-card--highlight' : ''}">
-        <div class="price-card__top">${t.badge ? `<span class="price-card__badge">${t.badge}</span>` : ''}</div>
-        <h3>${t.label}</h3>
-        <p class="price-card__range">${t.range}</p>
-        ${t.rangeNote ? `<p class="price-card__devis">${t.rangeNote}</p>` : ''}
-        <ul>${t.features.map((f) => `<li>${f}</li>`).join('')}</ul>
+        (h) => `
+      <article class="price-card price-card--hosting${h.highlight ? ' price-card--highlight' : ''}">
+        <h3>${h.label}</h3>
+        <p class="price-card__range">${h.price}</p>
+        ${h.priceNote ? `<p class="price-card__devis">${h.priceNote}</p>` : ''}
+        <p class="price-card__desc">${h.forWho}</p>
+        <ul>${h.features.map((f) => `<li>${f}</li>`).join('')}</ul>
+        ${h.note ? `<p class="price-card__note">${h.note}</p>` : ''}
       </article>`,
       )
       .join('');
@@ -745,12 +890,6 @@ function initPricing() {
   const footnotes = document.getElementById('pricing-footnotes');
   if (footnotes) {
     footnotes.innerHTML = pricing.footnotes.map((f) => `<li>${f}</li>`).join('');
-  }
-
-  const hostingEl = document.getElementById('pricing-hosting');
-  if (hostingEl && pricing.hosting) {
-    const heading = pricing.hosting.heading ?? "d'hébergement";
-    hostingEl.innerHTML = `<strong>${pricing.hosting.label} ${heading}</strong><span>${pricing.hosting.detail}</span>`;
   }
 }
 

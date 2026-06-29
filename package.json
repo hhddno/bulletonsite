@@ -7,7 +7,8 @@
   },
   "scripts": {
     "start": "serve . -l 3000",
-    "dev": "serve . -l 3000"
+    "dev": "serve . -l 3000",
+    "sync:embed-csp": "node scripts/sync-embed-csp.mjs"
   },
   "devDependencies": {
     "serve": "^14.2.4"

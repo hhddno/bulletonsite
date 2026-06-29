@@ -413,6 +413,7 @@ window.addEventListener('keydown', (e) => {
     prev();
   } else if (e.key === 'p') {
     playing = !playing;
+    document.getElementById('btn-play').textContent = playing ? 'Pause' : 'Lecture';
   } else if (e.key === 'h') {
     document.getElementById('rec-ui').classList.toggle('hidden');
     document.getElementById('rec-hint').classList.toggle('hidden');
@@ -452,7 +453,7 @@ window.__promoExport = {
 const totalSec = Math.round(activeSlides.reduce((a, s) => a + s.duration, 0));
 const hint = document.getElementById('rec-hint');
 if (hint) {
-  hint.textContent = `${shortMode ? 'Court' : 'Complet'} ~${totalSec} s · ${activeSlides.length} slides · V = version · Espace = suivant · M = musique · H = masquer`;
+  hint.textContent = `${shortMode ? 'Court' : 'Complet'} ~${totalSec} s · ${activeSlides.length} slides · V = version · Espace = suivant · H = masquer`;
 }
 
 requestAnimationFrame(loop);
