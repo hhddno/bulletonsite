@@ -212,7 +212,7 @@ function initContactForm() {
     const timeline = String(data.get('timeline') || '').trim();
     const message = String(data.get('message') || '').trim();
 
-    if (data.get('_gotcha')) return;
+    if (data.get('_honey')) return;
     if (!data.get('consent')) {
       formEl.reportValidity();
       return;
@@ -254,49 +254,28 @@ function initContactForm() {
     }
 
     try {
-      let ok = false;
-
-      if (form.web3formsAccessKey) {
-        const res = await fetch('https://api.web3forms.com/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            access_key: form.web3formsAccessKey,
-            name,
-            email,
-            phone,
-            subject: payload.subject,
-            message: summary,
-            from_name: name,
-            replyto: email,
-          }),
-        });
-        const json = await res.json();
-        ok = json.success === true;
-      } else {
-        const targetEmail = form.formsubmitEmail || contact.email;
-        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(targetEmail)}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            name,
-            email,
-            phone,
-            activity,
-            need,
-            budget,
-            hosting,
-            timeline,
-            message,
-            _subject: payload.subject,
-            _replyto: email,
-            _captcha: 'false',
-            _template: 'table',
-          }),
-        });
-        const json = await res.json().catch(() => ({}));
-        ok = res.ok && json.success !== 'false';
-      }
+      const targetEmail = form.formsubmitEmail || contact.email;
+      const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(targetEmail)}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          activity,
+          need,
+          budget,
+          hosting,
+          timeline,
+          message,
+          _subject: payload.subject,
+          _replyto: email,
+          _captcha: 'false',
+          _template: 'table',
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      const ok = res.ok && json.success !== 'false';
 
       if (!ok) throw new Error('submit failed');
 

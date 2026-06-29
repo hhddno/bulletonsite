@@ -70,11 +70,9 @@ export const contact = {
   photo: 'assets/hugo-portrait.png',
 };
 
-/** Formulaire : Web3Forms (recommandé) ou FormSubmit en secours. */
+/** Formulaire : FormSubmit (https://formsubmit.co). */
 export const form = {
-  /** Clé gratuite sur https://web3forms.com (e-mail bulletonsite@gmail.com). */
-  web3formsAccessKey: '',
-  /** Si Web3Forms est vide : activer une fois FormSubmit via le lien reçu par e-mail. */
+  /** E-mail de réception — activer une fois via le lien reçu de FormSubmit au premier envoi. */
   formsubmitEmail: 'bulletonsite@gmail.com',
   submitLabel: 'Envoyer ma demande de devis',
   sendingLabel: 'Envoi en cours…',
