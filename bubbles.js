@@ -5,6 +5,7 @@ export function initBubbles() {
   const canvas = document.getElementById('site-bubbles');
   if (!canvas) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(max-width: 768px), (hover: none) and (pointer: coarse)').matches) return;
 
   const ctx = canvas.getContext('2d');
   let w = 0;
@@ -12,6 +13,8 @@ export function initBubbles() {
   let bubbles = [];
   let mouse = { x: 0, y: 0 };
   let raf = 0;
+  let paint = true;
+  let scrollPauseTimer = 0;
 
   const tints = [
     { core: [167, 139, 250], edge: [244, 114, 182], rim: [103, 232, 249] },
@@ -130,33 +133,46 @@ export function initBubbles() {
   }
 
   function draw() {
-    ctx.clearRect(0, 0, w, h);
-    for (const b of bubbles) {
-      b.wobble += b.wobbleSpeed;
-      b.x += b.vx + Math.sin(b.wobble) * 0.15;
-      b.y += b.vy;
+    if (paint) {
+      ctx.clearRect(0, 0, w, h);
+      for (const b of bubbles) {
+        b.wobble += b.wobbleSpeed;
+        b.x += b.vx + Math.sin(b.wobble) * 0.15;
+        b.y += b.vy;
 
-      const dx = mouse.x - b.x;
-      const dy = mouse.y - b.y;
-      const dist = Math.hypot(dx, dy);
-      if (dist < 200 && dist > 0) {
-        b.x -= (dx / dist) * 0.5;
-        b.y -= (dy / dist) * 0.5;
+        const dx = mouse.x - b.x;
+        const dy = mouse.y - b.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 200 && dist > 0) {
+          b.x -= (dx / dist) * 0.5;
+          b.y -= (dy / dist) * 0.5;
+        }
+
+        if (b.y < -b.r * 2) {
+          b.y = h + b.r;
+          b.x = Math.random() * w;
+        }
+        if (b.x < -b.r) b.x = w + b.r;
+        if (b.x > w + b.r) b.x = -b.r;
+
+        drawBubble(b);
       }
-
-      if (b.y < -b.r * 2) {
-        b.y = h + b.r;
-        b.x = Math.random() * w;
-      }
-      if (b.x < -b.r) b.x = w + b.r;
-      if (b.x > w + b.r) b.x = -b.r;
-
-      drawBubble(b);
     }
     raf = requestAnimationFrame(draw);
   }
 
   window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener(
+    'scroll',
+    () => {
+      paint = false;
+      clearTimeout(scrollPauseTimer);
+      scrollPauseTimer = setTimeout(() => {
+        paint = true;
+      }, 150);
+    },
+    { passive: true },
+  );
   window.addEventListener(
     'pointermove',
     (e) => {

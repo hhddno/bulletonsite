@@ -2333,6 +2333,33 @@ body.is-loaded .hero__stage {
 }
 
 @media (max-width: 768px) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Fond fixe + canvas : glitch fréquent au scroll sur mobile (iOS/Android) */
+  .page-backdrop {
+    display: none;
+  }
+
+  body {
+    background-color: var(--black);
+    background-image:
+      radial-gradient(ellipse 55% 45% at 6% 12%, rgba(244, 114, 182, 0.14), transparent 55%),
+      radial-gradient(ellipse 50% 42% at 94% 28%, rgba(167, 139, 250, 0.13), transparent 52%),
+      radial-gradient(ellipse 48% 38% at 22% 78%, rgba(103, 232, 249, 0.11), transparent 48%),
+      radial-gradient(ellipse 45% 36% at 88% 88%, rgba(139, 92, 246, 0.1), transparent 46%);
+    background-attachment: scroll;
+  }
+
+  .section {
+    background-color: var(--black);
+  }
+
+  .section::after {
+    display: none;
+  }
+
   .section--showcase {
     overflow: hidden;
     padding-bottom: 3rem;
