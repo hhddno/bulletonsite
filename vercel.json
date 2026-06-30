@@ -1,6 +1,12 @@
 {
   "buildCommand": null,
   "outputDirectory": ".",
+  "rewrites": [
+    {
+      "source": "/api/bulle/:path*",
+      "destination": "https://bulle-chatbot.vercel.app/api/:path*"
+    }
+  ],
   "redirects": [
     { "source": "/diapo", "destination": "/diapo/", "permanent": true },
     {
