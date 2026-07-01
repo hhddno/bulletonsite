@@ -271,7 +271,7 @@ function initContactForm() {
           message,
           _subject: payload.subject,
           _replyto: email,
-          _captcha: 'false',
+          _captcha: 'true',
           _template: 'table',
         }),
       });
